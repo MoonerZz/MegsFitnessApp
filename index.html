@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meg's Fitness App</title>
+    <!-- 1. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Chart.js for progress graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 3. SVG Icons (Heroicons) -->
+    <script>
+        const ICONS = {
+            home: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.44 1.152-.44 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
+            workout: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" /><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5v3c0 .828.672 1.5 1.5 1.5h1.5v-6H4.5c-.828 0-1.5.672-1.5 1.5z" /><path stroke-linecap="round" stroke-linejoin="round" d="M18 10.5v3c0 .828.672 1.5 1.5 1.5h1.5v-6H19.5c-.828 0-1.5.672-1.5 1.5z" /></svg>`, // Dumbbell Icon
+            history: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" /></svg>`, // History/Library Icon
+            timer: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+            chevronUp: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>`,
+            chevronDown: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>`,
+            refresh: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644A11.952 11.952 0 0 0 12 21.75c5.614 0 10.224-3.957 11.16-9.075H12.378M19.015 4.356A11.953 11.953 0 0 0 12 2.25C6.386 2.25 1.776 6.207.84 11.325H11.622" /></svg>`
+        };
+    </script>
+    
+    <!-- 4. Custom Styling -->
+    <style>
+        /* Inter font - a good default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Define the pastel color scheme */
+        :root {
+            --color-bg: #FDFBF8; /* Pinky Beige */
+            --color-card: #FFFFFF;
+            --color-primary: #F1D4D4; /* Pastel Pink */
+            --color-primary-dark: #E6A4B4; /* Darker Pink */
+            --color-text: #4a4a4a;
+            --color-text-light: #777;
+        }
+        
+        /* Apply colors */
+        .bg-app { background-color: var(--color-bg); }
+        .bg-card { background-color: var(--color-card); }
+        .bg-primary { background-color: var(--color-primary); }
+        .text-primary-dark { color: var(--color-primary-dark); }
+        .text-main { color: var(--color-text); }
+        .text-light { color: var(--color-text-light); }
+        .border-primary { border-color: var(--color-primary); }
+        .border-primary-dark { border-color: var(--color-primary-dark); }
+        
+        .btn {
+            @apply px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main;
+        }
+        .btn-primary {
+            @apply bg-primary hover:bg-primary-dark text-main;
+        }
+        
+        /* Material 3 style inputs - UPDATED */
+        .form-input {
+            @apply w-full px-3 py-2 border border-primary-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark transition-all;
+        }
+
+        /* Navigation */
+        .nav-item {
+            @apply flex flex-col items-center justify-center w-full text-light transition-all;
+        }
+        .nav-item.active {
+            color: var(--color-primary-dark);
+        }
+
+        /* NEW: Style for completed exercise */
+        .goal-met {
+            background-color: #D9F9E6 !important; /* Pastel Green */
+            border-color: #B7E8C9 !important;
+        }
+        .goal-met h4 {
+            color: #2D6A4F; /* Dark Green Text */
+        }
+
+        /* NEW: Delete set button */
+        .delete-set-btn {
+            @apply w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold;
+            color: #C16A70; /* Pastel Red Text */
+            background-color: #F8E8E8; /* Pastel Red BG */
+            transition: all 0.2s;
+        }
+        .delete-set-btn:hover {
+            background-color: #F1DADA;
+        }
+
+        /* NEW: Quote Animation */
+        #quote-content {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .quote-fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+    </style>
+    
+    <!-- Pre-load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-app text-main">
+
+    <!-- Main App Container -->
+    <!-- Simulates a mobile view, centered on desktop -->
+    <!-- UPDATED: Added gradient background -->
+    <div class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl" style="background-image: linear-gradient(to bottom, var(--color-bg) 10%, var(--color-primary) 100%);">
+        
+        <!-- Header -->
+        <!-- UPDATED: New pastel pink background and dark text -->
+        <header class="text-center p-4 shadow-md bg-primary sticky top-0 z-10">
+            <h1 class="text-2xl font-bold text-main">Meg's Fitness App</h1>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow p-4 space-y-6 overflow-y-auto">
+            
+            <!-- View: Home -->
+            <div id="view-home" class="space-y-6">
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-100 relative">
+                    <h2 class="text-xl font-semibold mb-3">Welcome, Meg!</h2>
+                    
+                    <!-- NEW: Refresh Button -->
+                    <button id="refresh-quote-btn" onclick="app.refreshQuote()" class="absolute top-4 right-4 p-2 rounded-full text-light hover:bg-gray-100 transition-all" aria-label="Refresh quote">
+                        <span id="refresh-quote-icon"></span>
+                    </button>
+                    
+                    <!-- NEW: Quote Content Wrapper -->
+                    <div id="quote-content">
+                        <!-- Content injected by JS -->
+                        <p class="text-light italic text-center">
+                            "It never gets easier, you just get faster."
+                        </p>
+                        <p class="text-light text-sm text-right mt-2">- Greg LeMond</p>
+                    </div>
+                </div>
+                
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-4">Today's Focus</h3>
+                    <p class="text-light mb-4">Select your workout for the day to start logging.</p>
+                    <button onclick="app.showView('view-workout')" class="btn btn-primary w-full">
+                        Go to Workouts
+                    </button>
+                </div>
+            </div>
+
+            <!-- View: Workout -->
+            <div id="view-workout" class="hidden space-y-6">
+                <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-xl font-semibold mb-4">8 Week Program</h2>
+                    
+                    <!-- Week Selector -->
+                    <div class="mb-4">
+                        <label for="week-select" class="block text-sm font-medium text-light mb-1">Select Week</label>
+                        <select id="week-select" class="form-input" onchange="app.renderDays()">
+                            <!-- Options populated by JS -->
+                        </select>
+                    </div>
+                    
+                    <!-- Day Selector -->
+                    <div id="day-selector" class="grid grid-cols-3 gap-2">
+                        <!-- Buttons populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Exercises for selected day -->
+                <div id="exercise-list" class_ ="space-y-4">
+                    <!-- Content populated by JS -->
+                </div>
+            </div>
+
+            <!-- View: History -->
+            <div id="view-history" class="hidden space-y-6">
+                <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-xl font-semibold mb-4">Track Your Progress</h2>
+                    
+                    <!-- Exercise Selector -->
+                    <div class="mb-4">
+                        <label for="exercise-history-select" class="block text-sm font-medium text-light mb-1">Select Exercise</label>
+                        <select id="exercise-history-select" class="form-input" onchange="app.renderHistory()">
+                            <!-- Options populated by JS -->
+                        </select>
+                    </div>
+                    
+                    <!-- Chart container -->
+                    <div class="w-full h-64">
+                        <canvas id="progress-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Log History Table -->
+                <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-3">Full Log</h3>
+                    <div id="history-log-list" class="space-y-2 max-h-64 overflow-y-auto">
+                        <!-- List populated by JS -->
+                        <p class="text-light text-center">Select an exercise to see your history.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        
+        <!-- Collapsible Rest Timer -->
+        <!-- This is now a modal, not a sticky element -->
+        <div id="timer-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white shadow-xl rounded-lg border border-gray-200 w-11/12 max-w-xs">
+                <!-- Timer Header -->
+                <div class="flex justify-between items-center p-3 border-b border-gray-200">
+                    <div class="flex items-center space-x-2">
+                        <span id="timer-icon" class="text-primary-dark"></span>
+                        <span class="font-semibold">Rest Timer</span>
+                    </div>
+                    <button onclick="app.timer.toggleModal()" class="p-1 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+                </div>
+                
+                <!-- Timer Body -->
+                <div id="timer-body" class="p-4 space-y-3">
+                    <div class="text-center">
+                        <span id="timer-display" class="text-5xl font-bold text-main">01:30</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="app.timer.set(60)" class="btn bg-gray-100 hover:bg-gray-200 text-sm">1:00</button>
+                        <button onclick="app.timer.set(90)" class="btn bg-gray-100 hover:bg-gray-200 text-sm">1:30</button>
+                        <button onclick="app.timer.set(120)" class="btn bg-gray-100 hover:bg-gray-200 text-sm">2:00</button>
+                    </div>
+                    <button id="timer-start-stop" onclick="app.timer.startStop()" class="btn btn-primary w-full">
+                        Start
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW: Countdown Modal -->
+        <div id="countdown-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+            <div id="countdown-text" class="text-9xl font-bold text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.5);">3</div>
+        </div>
+
+
+        <!-- Bottom Navigation -->
+        <nav class="grid grid-cols-4 p-4 shadow-[0_-2px_5px_rgba(0,0,0,0.05)] bg-card sticky bottom-0 z-10 border-t border-gray-100">
+            <button id="nav-home" onclick="app.showView('view-home')" class="nav-item active">
+                <span id="nav-icon-home"></span>
+                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <span class="text-xs font-medium w-full text-center">Home</span>
+            </button>
+            <button id="nav-workout" onclick="app.showView('view-workout')" class="nav-item">
+                <span id="nav-icon-workout"></span>
+                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <span class="text-xs font-medium w-full text-center">Workout</span>
+            </button>
+            <button id="nav-history" onclick="app.showView('view-history')" class="nav-item">
+                <span id="nav-icon-history"></span>
+                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <span class="text-xs font-medium w-full text-center">History</span>
+            </button>
+            <button id="nav-timer" onclick="app.timer.toggleModal()" class="nav-item">
+                <span id="nav-icon-timer" class="text-light"></span>
+                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <span class="text-xs font-medium w-full text-center">Timer</span>
+            </button>
+        </nav>
+
+    </div> <!-- End App Container -->
+
+    
+    <!-- JavaScript Application Logic -->
+    <script>
+        // --- 8-Week, 5-Day Split Program ---
+        
+        // --- NEW: Exercise Bank ---
+        // This bank categorizes exercises to be picked dynamically.
+        const EXERCISE_BANK = {
+            // Chest
+            chest_compound: [
+                { name: "Bench Press", type: 'strength', baseScheme: { sets: 5, reps: 5 } },
+                { name: "Incline Bench Press", type: 'strength', baseScheme: { sets: 4, reps: 6 } },
+                { name: "Dumbbell Bench Press", type: 'hypertrophy', baseScheme: { sets: 4, reps: 8 } },
+            ],
+            chest_isolation: [
+                { name: "Dumbbell Flyes", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Cable Crossovers", type: 'hypertrophy', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Pec Deck Machine", type: 'hypertrophy', baseScheme: { sets: 3, reps: 15 } },
+            ],
+            chest_pushup: [
+                { name: "Push-ups", type: 'endurance', baseScheme: { sets: 3, reps: 'AMRAP' } },
+                { name: "Incline Push-ups", type: 'endurance', baseScheme: { sets: 3, reps: 'AMRAP' } },
+                { name: "Decline Push-ups", type: 'endurance', baseScheme: { sets: 3, reps: 'AMRAP' } },
+            ],
+            // Back
+            back_compound_heavy: [
+                { name: "Deadlift", type: 'strength', baseScheme: { sets: 1, reps: 5 } }, // Special case, 1 working set
+                { name: "Rack Pulls", type: 'strength', baseScheme: { sets: 3, reps: 5 } },
+            ],
+            back_vertical_pull: [
+                { name: "Pull-ups", type: 'hypertrophy', baseScheme: { sets: 4, reps: 8 } },
+                { name: "Lat Pulldown", type: 'hypertrophy', baseScheme: { sets: 4, reps: 10 } },
+                { name: "Close Grip Pulldown", type: 'hypertrophy', baseScheme: { sets: 4, reps: 10 } },
+            ],
+            back_horizontal_row: [
+                { name: "Barbell Row", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Dumbbell Row", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Seated Cable Row", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+            ],
+            back_rear_delts: [
+                { name: "Face Pulls", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Reverse Pec Deck", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+            ],
+            // Legs
+            leg_squat: [
+                { name: "Squat", type: 'strength', baseScheme: { sets: 5, reps: 5 } },
+                { name: "Front Squat", type: 'strength', baseScheme: { sets: 4, reps: 6 } },
+                { name: "Leg Press", type: 'hypertrophy', baseScheme: { sets: 4, reps: 10 } },
+            ],
+            leg_hinge: [
+                { name: "Romanian Deadlift (RDL)", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Good Mornings", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Glute Ham Raise", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+            ],
+            leg_accessory: [
+                { name: "Lunges", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Leg Extensions", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Leg Curls", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+            ],
+            leg_calves: [
+                { name: "Calf Raises", type: 'isolation', baseScheme: { sets: 4, reps: 15 } },
+                { name: "Seated Calf Raises", type: 'isolation', baseScheme: { sets: 4, reps: 20 } },
+            ],
+            // Shoulders
+            shoulder_press: [
+                { name: "Overhead Press (OHP)", type: 'strength', baseScheme: { sets: 5, reps: 5 } },
+                { name: "Dumbbell Shoulder Press", type: 'hypertrophy', baseScheme: { sets: 4, reps: 8 } },
+                { name: "Arnold Press", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+            ],
+            shoulder_lateral: [
+                { name: "Lateral Raises", type: 'isolation', baseScheme: { sets: 4, reps: 12 } },
+                { name: "Cable Lateral Raises", type: 'isolation', baseScheme: { sets: 4, reps: 15 } },
+            ],
+            shoulder_front: [
+                { name: "Front Raises", type: 'isolation', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Plate Raises", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+            ],
+            // Arms
+            biceps_curl: [
+                { name: "Barbell Curl", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Dumbbell Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Incline Dumbbell Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+            ],
+            biceps_hammer: [
+                { name: "Hammer Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Rope Hammer Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 15 } },
+            ],
+            triceps_compound: [
+                { name: "Close Grip Bench Press", type: 'strength', baseScheme: { sets: 4, reps: 8 } },
+                { name: "Dips", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+            ],
+            triceps_isolation: [
+                { name: "Tricep Pushdown", type: 'isolation', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Overhead Extension", type: 'isolation', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Skullcrushers", type: 'isolation', baseScheme: { sets: 3, reps: 10 } },
+            ]
+        };
+
+        // --- NEW: Program Structure ---
+        // This defines the *template* for each day.
+        const PROGRAM = {
+            weeks: 8,
+            days: [
+                {
+                    name: "Day 1: Chest & Triceps",
+                    structure: ['chest_compound', 'chest_compound', 'chest_isolation', 'triceps_compound', 'triceps_isolation']
+                },
+                {
+                    name: "Day 2: Back & Biceps",
+                    structure: ['back_compound_heavy', 'back_vertical_pull', 'back_horizontal_row', 'back_rear_delts', 'biceps_curl', 'biceps_hammer']
+                },
+                {
+                    name: "Day 3: Legs",
+                    structure: ['leg_squat', 'leg_hinge', 'leg_accessory', 'leg_accessory', 'leg_calves']
+                },
+                {
+                    name: "Day 4: Shoulders & Chest",
+                    structure: ['shoulder_press', 'shoulder_lateral', 'shoulder_front', 'back_rear_delts', 'chest_compound', 'chest_pushup']
+                },
+                {
+                    name: "Day 5: Arms & Full Body",
+                    structure: ['biceps_curl', 'triceps_isolation', 'biceps_hammer', 'triceps_isolation', 'leg_squat', 'back_horizontal_row']
+                }
+            ]
+        };
+
+        const app = {
+            history: [],
+            currentView: 'view-home',
+            chartInstance: null,
+            // UPDATED: More Quotes
+            quotes: [
+                { text: "It never gets easier, you just get faster.", author: "Greg LeMond" },
+                { text: "The last rep is the one that makes the muscle grow.", author: "Arnold Schwarzenegger" },
+                { text: "Success isn't always about greatness. It's about consistency.", author: "Dwayne Johnson" },
+                { text: "Don't count the days, make the days count.", author: "Muhammad Ali" },
+                { text: "The pain you feel today will be the strength you feel tomorrow.", author: "Unknown" },
+                { text: "Your body can stand almost anything. It's your mind you have to convince.", author: "Unknown" }
+            ],
+            currentQuoteIndex: 0,
+            
+            init() {
+                // Load data
+                this.loadHistory();
+                
+                // Set up UI
+                this.injectIcons();
+                this.renderWeekSelector();
+                this.renderDays();
+                this.renderHistoryExerciseSelector();
+                
+                // NEW: Load initial quote
+                this.refreshQuote(true);
+                
+                // Show initial view
+                this.showView('view-home');
+                
+                // Init timer
+                this.timer.init();
+            },
+            
+            injectIcons() {
+                document.getElementById('nav-icon-home').innerHTML = ICONS.home;
+                document.getElementById('nav-icon-workout').innerHTML = ICONS.workout;
+                document.getElementById('nav-icon-history').innerHTML = ICONS.history;
+                document.getElementById('nav-icon-timer').innerHTML = ICONS.timer; // For the nav bar
+                document.getElementById('timer-icon').innerHTML = ICONS.timer; // For the modal
+                // NEW:
+                if (document.getElementById('refresh-quote-icon')) {
+                    document.getElementById('refresh-quote-icon').innerHTML = ICONS.refresh;
+                }
+            },
+            
+            // --- DATA HANDLING ---
+            loadHistory() {
+                const storedHistory = localStorage.getItem('megsFitnessApp_history');
+                this.history = storedHistory ? JSON.parse(storedHistory) : [];
+            },
+            
+            saveHistory() {
+                localStorage.setItem('megsFitnessApp_history', JSON.stringify(this.history));
+            },
+            
+            // UPDATED logSet function
+            logSet(exerciseName, exId, week, day) {
+                const weightEl = document.getElementById(`weight-${exId}`);
+                const repsEl = document.getElementById(`reps-${exId}`);
+                
+                const weight = weightEl.value;
+                const reps = repsEl.value;
+
+                if (!weight || !reps) {
+                    app.timer.toggleModal(); // Close timer if open
+                    setTimeout(() => alert('Please enter both weight and reps.'), 10);
+                    return;
+                }
+                
+                const weightNum = parseFloat(weight);
+                const repsNum = parseInt(reps);
+                
+                // Epley formula for 1RM
+                const estimated1RM = (repsNum === 1) ? weightNum : weightNum * (1 + (repsNum / 30));
+                
+                const logEntry = {
+                    id: Date.now(), // NEW: Unique ID for deleting
+                    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+                    exercise: exerciseName,
+                    week: parseInt(week),
+                    day: parseInt(day),
+                    weight: weightNum,
+                    reps: repsNum,
+                    estimated1RM: parseFloat(estimated1RM.toFixed(2))
+                };
+                
+                this.history.push(logEntry);
+                this.saveHistory();
+                
+                // NEW: Show Logged Set
+                const logContainer = document.getElementById(`logged-sets-${exId}`);
+                if (logContainer) {
+                    const setEl = document.createElement('div');
+                    // NEW: Add ID to the element
+                    setEl.id = `set-${logEntry.id}`;
+                    // UPDATED: Style and add delete button
+                    setEl.className = 'flex justify-between items-center text-sm p-2 bg-app rounded-lg border border-primary/50';
+                    setEl.innerHTML = `
+                        <span class="text-main"><strong>${logEntry.weight} kg</strong> x ${logEntry.reps} reps</span>
+                        <button onclick="app.deleteSet(${logEntry.id})" class="delete-set-btn" aria-label="Delete set">&times;</button>
+                    `;
+                    logContainer.prepend(setEl); // Prepend to show newest first
+                }
+
+                // NEW: Reset Inputs
+                weightEl.value = '';
+                repsEl.value = '';
+
+                // --- NEW: Check and update best 1RM ---
+                const best1rmEl = document.getElementById(`best-1rm-${exId}`);
+                if (best1rmEl) {
+                    let currentBest = parseFloat(best1rmEl.dataset.best1rm) || 0;
+                    if (logEntry.estimated1RM > currentBest) {
+                        best1rmEl.innerHTML = `Best: ${logEntry.estimated1RM} kg`;
+                        best1rmEl.dataset.best1rm = logEntry.estimated1RM;
+                    }
+                }
+                
+                // --- NEW: Check for goal completion ---
+                const card = document.getElementById(`card-${exId}`);
+                if (card) {
+                    let logged = parseInt(card.dataset.setsLogged) + 1;
+                    card.dataset.setsLogged = logged;
+                    const goal = parseInt(card.dataset.goalSets);
+                    
+                    if (logged >= goal) {
+                        card.classList.add('goal-met');
+                    }
+                }
+                
+                // Re-render history if we are on that page
+                if (this.currentView === 'view-history') {
+                    this.renderHistory();
+                }
+            },
+
+            // NEW: Delete Set Function
+            deleteSet(id) {
+                const entryId = parseInt(id);
+                const index = this.history.findIndex(entry => entry.id === entryId);
+                
+                if (index === -1) return;
+                
+                const logEntry = this.history[index];
+                const exId = logEntry.exercise.replace(/\s+/g, '-');
+                
+                // 1. Remove from history array and save
+                this.history.splice(index, 1);
+                this.saveHistory();
+                
+                // 2. Remove from UI
+                const setElement = document.getElementById(`set-${entryId}`);
+                if (setElement) {
+                    setElement.remove();
+                }
+                
+                // 3. Update goal tracking card
+                const card = document.getElementById(`card-${exId}`);
+                if (card) {
+                    let logged = parseInt(card.dataset.setsLogged) - 1;
+                    if (logged < 0) logged = 0;
+                    card.dataset.setsLogged = logged;
+                    const goal = parseInt(card.dataset.goalSets);
+                    
+                    if (logged < goal) {
+                        card.classList.remove('goal-met');
+                    }
+                }
+                
+                // 4. Recalculate and update best 1RM
+                const newBest = this.getBest1RM(logEntry.exercise);
+                const best1rmEl = document.getElementById(`best-1rm-${exId}`);
+                if (best1rmEl) {
+                    best1rmEl.innerHTML = newBest > 0 ? `Best: ${newBest} kg` : '';
+                    best1rmEl.dataset.best1rm = newBest;
+                }
+
+                // 5. Re-render history view if active
+                if (this.currentView === 'view-history') {
+                    this.renderHistory();
+                }
+            },
+            
+            // --- NEW: Countdown & Speech Function ---
+            startCountdown() {
+                const modal = document.getElementById('countdown-modal');
+                const textEl = document.getElementById('countdown-text');
+                if (!modal || !textEl) return;
+
+                modal.classList.remove('hidden');
+                
+                let count = 3;
+                textEl.innerText = count;
+
+                const interval = setInterval(() => {
+                    count--;
+                    if (count > 0) {
+                        textEl.innerText = count;
+                    } else if (count === 0) {
+                        textEl.innerText = 'GO!';
+                        this.playGoSound(); // Speak on "GO!"
+                    } else {
+                        // Hide modal after "GO!"
+                        clearInterval(interval);
+                        modal.classList.add('hidden');
+                    }
+                }, 1000);
+            },
+            
+            playGoSound() {
+                if ('speechSynthesis' in window) {
+                    // Resume context if needed
+                    window.speechSynthesis.resume();
+                    const utterance = new SpeechSynthesisUtterance("Get after it Meg");
+                    utterance.lang = 'en-GB'; // Use a British accent
+                    utterance.rate = 0.9;
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    console.warn('Web Speech API not supported in this browser.');
+                }
+            },
+
+            // --- NAVIGATION ---
+            showView(viewId) {
+                // Hide all views
+                document.getElementById('view-home').classList.add('hidden');
+                document.getElementById('view-workout').classList.add('hidden');
+                document.getElementById('view-history').classList.add('hidden');
+                
+                // Show selected view
+                document.getElementById(viewId).classList.remove('hidden');
+                
+                // Update nav state
+                document.getElementById('nav-home').classList.remove('active');
+                document.getElementById('nav-workout').classList.remove('active');
+                document.getElementById('nav-history').classList.remove('active');
+                
+                if (viewId === 'view-home') document.getElementById('nav-home').classList.add('active');
+                if (viewId === 'view-workout') document.getElementById('nav-workout').classList.add('active');
+                if (viewId === 'view-history') {
+                    document.getElementById('nav-history').classList.add('active');
+                    this.renderHistory(); // Re-render chart when viewing
+                }
+                
+                this.currentView = viewId;
+            },
+            
+            // --- NEW: Quote Function ---
+            refreshQuote(isInitialLoad = false) {
+                const quoteContent = document.getElementById('quote-content');
+                if (!quoteContent) return;
+
+                const updateText = () => {
+                    // Get next quote (ensure it's not the same as the current one)
+                    let newIndex = this.currentQuoteIndex;
+                    if (this.quotes.length > 1) {
+                        while (newIndex === this.currentQuoteIndex) {
+                            newIndex = Math.floor(Math.random() * this.quotes.length);
+                        }
+                    }
+                    this.currentQuoteIndex = newIndex;
+                    const quote = this.quotes[this.currentQuoteIndex];
+                    
+                    // Update HTML
+                    quoteContent.innerHTML = `
+                        <p class="text-light italic text-center">
+                            "${quote.text}"
+                        </p>
+                        <p class="text-light text-sm text-right mt-2">- ${quote.author}</p>
+                    `;
+                    
+                    // Fade in
+                    quoteContent.classList.remove('quote-fade-out');
+                };
+
+                if (isInitialLoad) {
+                    // On first load, just set the text from index 0
+                    const quote = this.quotes[0];
+                    this.currentQuoteIndex = 0;
+                    quoteContent.innerHTML = `
+                        <p class="text-light italic text-center">
+                            "${quote.text}"
+                        </p>
+                        <p class="text-light text-sm text-right mt-2">- ${quote.author}</p>
+                    `;
+                } else {
+                    // Fade out, then update, then fade in
+                    quoteContent.classList.add('quote-fade-out');
+                    setTimeout(updateText, 300); // Wait for CSS transition
+                }
+            },
+
+            // --- WORKOUT VIEW ---
+            renderWeekSelector() {
+                const select = document.getElementById('week-select');
+                select.innerHTML = ''; // Clear
+                for (let i = 1; i <= PROGRAM.weeks; i++) {
+                    select.innerHTML += `<option value="${i}">Week ${i}</option>`;
+                }
+            },
+            
+            renderDays() {
+                const daySelector = document.getElementById('day-selector');
+                const exerciseList = document.getElementById('exercise-list');
+                daySelector.innerHTML = ''; // Clear days
+                exerciseList.innerHTML = ''; // Clear exercises
+                
+                PROGRAM.days.forEach((day, index) => {
+                    daySelector.innerHTML += `
+                        <button 
+                            onclick="app.renderExercises(${index})" 
+                            class="btn bg-gray-100 hover:bg-gray-200 text-sm p-3">
+                            ${day.name.split(':')[0]} <!-- Just "Day 1" -->
+                        </button>
+                    `;
+                });
+            },
+            
+            // --- NEW: Intensity Logic ---
+            // Calculates sets/reps based on week and exercise type
+            getIntensity(week, baseScheme, type) {
+                const { sets: baseSets, reps: baseReps } = baseScheme;
+                if (baseReps === 'AMRAP') return { sets: baseSets, reps: 'AMRAP' };
+                
+                let sets = baseSets;
+                let reps = baseReps;
+                
+                // Simple linear progression model
+                // Weeks 1-2: Base
+                // Weeks 3-4: +Reps or +Sets
+                // Weeks 5-6: +Weight (so -Reps) or +Sets
+                // Weeks 7-8: Peak
+                
+                if (type === 'strength') { // e.g., 5x5
+                    if (week >= 3 && week <= 4) { sets = 5; reps = 4; } // Heavier
+                    if (week >= 5 && week <= 6) { sets = 5; reps = 3; } // Heavier still
+                    if (week >= 7) { sets = 4; reps = 2; } // Peaking
+                } else if (type === 'hypertrophy') { // e.g., 3x10
+                    if (week >= 3 && week <= 4) { sets = baseSets; reps = baseReps + 2; } // More reps
+                    if (week >= 5 && week <= 6) { sets = baseSets + 1; reps = baseReps; } // More sets
+                    if (week >= 7) { sets = baseSets + 1; reps = baseReps + 2; } // More both
+                } else { // isolation/endurance
+                    if (week >= 3 && week <= 4) { sets = baseSets; reps = baseReps + 3; }
+                    if (week >= 5 && week <= 6) { sets = baseSets + 1; reps = baseReps; }
+                    if (week >= 7) { sets = baseSets + 1; reps = baseReps + 3; }
+                }
+                
+                // Cap sets at 5 for sanity
+                if (sets > 5) sets = 5;
+                
+                return { sets, reps };
+            },
+            
+            // --- NEW: Workout Generation ---
+            // Dynamically builds the workout for the day
+            generateWorkout(week, dayIndex) {
+                const dayStructure = PROGRAM.days[dayIndex].structure;
+                const workout = [];
+                
+                dayStructure.forEach((category, catIndex) => {
+                    const exerciseOptions = EXERCISE_BANK[category];
+                    if (!exerciseOptions) return;
+                    
+                    // "Chops and changes":
+                    // Cycle through exercises based on week and category index
+                    // This creates a consistent but varied weekly plan
+                    const exerciseIndex = (week - 1 + catIndex) % exerciseOptions.length;
+                    const selectedExercise = exerciseOptions[exerciseIndex];
+                    
+                    // Get intensity for the week
+                    const { sets, reps } = this.getIntensity(week, selectedExercise.baseScheme, selectedExercise.type);
+                    
+                    workout.push({
+                        name: selectedExercise.name,
+                        sets: sets,
+                        reps: reps
+                    });
+                });
+                
+                return workout;
+            },
+            
+            // NEW: Helper to get best 1RM from history
+            getBest1RM(exerciseName) {
+                const exerciseData = this.history
+                    .filter(entry => entry.exercise === exerciseName);
+                
+                if (exerciseData.length === 0) {
+                    return 0;
+                }
+                
+                const best = exerciseData.reduce((max, entry) => 
+                    entry.estimated1RM > max ? entry.estimated1RM : max, 0);
+                
+                return best;
+            },
+
+            // UPDATED renderExercises
+            renderExercises(dayIndex) {
+                const exerciseList = document.getElementById('exercise-list');
+                const week = document.getElementById('week-select').value;
+                const day = PROGRAM.days[dayIndex];
+                
+                // --- NEW: Generate workout on the fly ---
+                const generatedExercises = this.generateWorkout(week, dayIndex);
+                
+                exerciseList.innerHTML = `<h3 class="text-lg font-semibold mb-3">${day.name}</h3>`;
+                
+                generatedExercises.forEach(ex => {
+                    const exId = ex.name.replace(/\s+/g, '-');
+                    const best1RM = this.getBest1RM(ex.name); // Get best 1RM
+                    
+                    exerciseList.innerHTML += `
+                        <div id="card-${exId}" data-goal-sets="${ex.sets}" data-sets-logged="0" class="bg-card p-4 rounded-xl shadow-lg shadow-primary/20 border border-primary/40 space-y-3 mb-4 transition-all">
+                            <!-- UPDATED Header -->
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-md font-semibold">${ex.name}</h4>
+                                <span id="best-1rm-${exId}" data-best-1rm="${best1RM}" class="text-sm font-bold text-primary-dark">
+                                    ${best1RM > 0 ? `Best: ${best1RM} kg` : ''}
+                                </span>
+                            </div>
+                            
+                            <p class="text-sm text-light">Goal: ${ex.sets} sets x ${ex.reps} reps</p>
+                            
+                            <div class="flex items-center space-x-2">
+                                <input id="weight-${exId}" type="number" placeholder="Weight (kg)" class="form-input w-1/2">
+                                <span class="text-light">x</span>
+                                <input id="reps-${exId}" type="number" placeholder="Reps" class="form-input w-1/2">
+                            </div>
+                            
+                            <button 
+                                onclick="app.logSet(
+                                    '${ex.name}', 
+                                    '${exId}',
+                                    ${week},
+                                    ${dayIndex + 1}
+                                )" 
+                                class="w-full text-sm px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main bg-primary hover:bg-primary-dark">
+                                Log Set
+                            </button>
+                            
+                            <!-- NEW: Logged sets container -->
+                            <div id="logged-sets-${exId}" class="space-y-1 mt-3">
+                                <!-- Logged sets will be prepended here -->
+                            </div>
+                        </div>
+                    `;
+                });
+            },
+            
+            // --- HISTORY VIEW ---
+            renderHistoryExerciseSelector() {
+                const select = document.getElementById('exercise-history-select');
+                let allExercises = new Set(); // Use a Set to avoid duplicates
+                
+                // --- NEW: Read from EXERCISE_BANK ---
+                Object.values(EXERCISE_BANK).forEach(category => {
+                    category.forEach(exercise => {
+                        allExercises.add(exercise.name);
+                    });
+                });
+                
+                const sortedExercises = [...allExercises].sort();
+                
+                select.innerHTML = '<option value="">-- Select Exercise --</option>';
+                sortedExercises.forEach(exName => {
+                    select.innerHTML += `<option value="${exName}">${exName}</option>`;
+                });
+            },
+            
+            renderHistory() {
+                const selectedExercise = document.getElementById('exercise-history-select').value;
+                const logList = document.getElementById('history-log-list');
+                
+                if (this.chartInstance) {
+                    this.chartInstance.destroy(); // Clear old chart
+                }
+                
+                if (!selectedExercise) {
+                    logList.innerHTML = '<p class="text-light text-center">Select an exercise to see your history.</p>';
+                    return;
+                }
+                
+                // Filter history for this exercise
+                const exerciseData = this.history
+                    .filter(entry => entry.exercise === selectedExercise)
+                    .sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by date
+                    
+                if (exerciseData.length === 0) {
+                    logList.innerHTML = '<p class="text-light text-center">No logs found for this exercise yet.</p>';
+                    return;
+                }
+                
+                // Render Log List
+                logList.innerHTML = '';
+                [...exerciseData].reverse().forEach(entry => { // Show newest first in list
+                    logList.innerHTML += `
+                        <div class="flex justify-between items-center text-sm p-2 border-b border-gray-100">
+                            <div>
+                                <span class="font-semibold">${entry.date}</span>
+                                <span class="text-light">(W${entry.week} D${entry.day})</span>
+                            </div>
+                            <div>
+                                Gstrong>${entry.weight} kg</strong> x ${entry.reps} reps
+                                <span class="text-primary-dark ml-2">(Est. 1RM: ${entry.estimated1RM})</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Render Chart
+                const ctx = document.getElementById('progress-chart').getContext('2d');
+                
+                // We'll chart the best estimated 1RM *per day*
+                const chartData = {};
+                exerciseData.forEach(entry => {
+                    if (!chartData[entry.date] || entry.estimated1RM > chartData[entry.date]) {
+                        chartData[entry.date] = entry.estimated1RM;
+                    }
+                });
+                
+                const labels = Object.keys(chartData);
+                const data = Object.values(chartData);
+                
+                this.chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: `Est. 1RM Progress (${selectedExercise})`,
+                            data: data,
+                            borderColor: 'var(--color-primary-dark)',
+                            backgroundColor: 'rgba(230, 164, 180, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Est. 1RM (kg)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                }
+                            }
+                        }
+                    }
+                });
+            },
+            
+            // --- REST TIMER ---
+            timer: {
+                totalSeconds: 90,
+                secondsRemaining: 90,
+                interval: null,
+                isRunning: false,
+                audioCtx: null, // NEW: For audio beep
+                
+                init() {
+                    this.updateDisplay();
+                    // NEW: Initialize AudioContext
+                    try {
+                        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    } catch(e) {
+                        console.error('Web Audio API is not supported in this browser');
+                    }
+                },
+                
+                toggleModal() { // NEW: Controls the modal
+                    const modal = document.getElementById('timer-modal');
+                    modal.classList.toggle('hidden');
+                },
+                
+                playBeep() { // NEW: Plays a sound
+                    if (!this.audioCtx) return;
+                    
+                    // Resume context if suspended
+                    if (this.audioCtx.state === 'suspended') {
+                        this.audioCtx.resume();
+                    }
+                    
+                    const oscillator = this.audioCtx.createOscillator();
+                    const gainNode = this.audioCtx.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(this.audioCtx.destination);
+                    
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(880, this.audioCtx.currentTime); // A high-ish pitch
+                    gainNode.gain.setValueAtTime(0.5, this.audioCtx.currentTime); // Volume
+                    
+                    oscillator.start();
+                    oscillator.stop(this.audioCtx.currentTime + 0.5); // Beep for 0.5 seconds
+                },
+                
+                set(seconds) {
+                    if (this.isRunning) return;
+                    this.totalSeconds = seconds;
+                    this.secondsRemaining = seconds;
+                    this.updateDisplay();
+                },
+                
+                startStop() {
+                    if (this.isRunning) {
+                        // Stop
+                        clearInterval(this.interval);
+                        this.isRunning = false;
+                        document.getElementById('timer-start-stop').innerText = 'Start';
+                    } else {
+                        // Start
+                        
+                        // --- NEW: Resume audio/speech context on user interaction ---
+                        if (this.audioCtx && this.audioCtx.state === 'suspended') {
+                            this.audioCtx.resume();
+                        }
+                        if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+                            window.speechSynthesis.resume();
+                        }
+                        
+                        this.isRunning = true;
+                        document.getElementById('timer-start-stop').innerText = 'Stop';
+                        
+                        this.interval = setInterval(() => {
+                            this.secondsRemaining--;
+                            this.updateDisplay();
+                            
+                            if (this.secondsRemaining <= 0) {
+                                this.finish();
+                            }
+                        }, 1000);
+                    }
+                },
+                
+                finish() {
+                    clearInterval(this.interval);
+                    this.isRunning = false;
+                    document.getElementById('timer-start-stop').innerText = 'Start';
+                    this.secondsRemaining = this.totalSeconds; // Reset
+                    this.updateDisplay();
+                    
+                    // --- UPDATED: Play beep, then start countdown ---
+                    this.playBeep();
+                    
+                    // auto-close timer modal
+                    if (!document.getElementById('timer-modal').classList.contains('hidden')) {
+                        this.toggleModal();
+                    }
+                    
+                    // Start the 3-2-1 countdown
+                    app.startCountdown();
+                },
+                
+                updateDisplay() {
+                    const minutes = Math.floor(this.secondsRemaining / 60);
+                    const seconds = this.secondsRemaining % 60;
+                    document.getElementById('timer-display').innerText = 
+                        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                }
+            }
+        };
+
+        // Start the app
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+
+</body>
+</html>
+
