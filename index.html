@@ -64,7 +64,7 @@
 
         /* Navigation */
         .nav-item {
-            @apply flex flex-col items-center justify-center w-full text-light transition-all;
+            @apply flex flex-col justify-center w-full text-light transition-all; /* UPDATED: Removed items-center */
         }
         .nav-item.active {
             color: var(--color-primary-dark);
@@ -208,9 +208,9 @@
         </main>
         
         <!-- Collapsible Rest Timer -->
-        <!-- This is now a modal, not a sticky element -->
-        <div id="timer-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-            <div class="bg-white shadow-xl rounded-lg border border-gray-200 w-11/12 max-w-xs">
+        <!-- UPDATED: This is now a panel that slides up from the bottom, no overlay -->
+        <div id="timer-modal" class="fixed left-0 right-0 bottom-0 z-50 w-full transition-transform duration-300 ease-in-out transform translate-y-full">
+            <div class="bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.05)] rounded-t-lg border-t border-gray-200 w-full max-w-md mx-auto">
                 <!-- Timer Header -->
                 <div class="flex justify-between items-center p-3 border-b border-gray-200">
                     <div class="flex items-center space-x-2">
@@ -246,23 +246,23 @@
         <!-- Bottom Navigation -->
         <nav class="grid grid-cols-4 p-4 shadow-[0_-2px_5px_rgba(0,0,0,0.05)] bg-card sticky bottom-0 z-10 border-t border-gray-100">
             <button id="nav-home" onclick="app.showView('view-home')" class="nav-item active">
-                <span id="nav-icon-home"></span>
-                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <!-- UPDATED: Added classes to center the icon -->
+                <span id="nav-icon-home" class="w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">Home</span>
             </button>
             <button id="nav-workout" onclick="app.showView('view-workout')" class="nav-item">
-                <span id="nav-icon-workout"></span>
-                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <!-- UPDATED: Added classes to center the icon -->
+                <span id="nav-icon-workout" class="w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">Workout</span>
             </button>
             <button id="nav-history" onclick="app.showView('view-history')" class="nav-item">
-                <span id="nav-icon-history"></span>
-                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <!-- UPDATED: Added classes to center the icon -->
+                <span id="nav-icon-history" class="w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">History</span>
             </button>
             <button id="nav-timer" onclick="app.timer.toggleModal()" class="nav-item">
-                <span id="nav-icon-timer" class="text-light"></span>
-                <!-- UPDATED: Added w-full and text-center to center the text label -->
+                <!-- UPDATED: Added classes to center the icon -->
+                <span id="nav-icon-timer" class="text-light w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">Timer</span>
             </button>
         </nav>
@@ -461,7 +461,11 @@
                 const reps = repsEl.value;
 
                 if (!weight || !reps) {
-                    app.timer.toggleModal(); // Close timer if open
+                    // UPDATED: Only close timer if it's open, don't toggle
+                    const timerPanel = document.getElementById('timer-modal');
+                    if (!timerPanel.classList.contains('translate-y-full')) {
+                        app.timer.toggleModal(); // Close it
+                    }
                     setTimeout(() => alert('Please enter both weight and reps.'), 10);
                     return;
                 }
@@ -974,9 +978,9 @@
                     }
                 },
                 
-                toggleModal() { // NEW: Controls the modal
+                toggleModal() { // UPDATED: Slides panel up and down
                     const modal = document.getElementById('timer-modal');
-                    modal.classList.toggle('hidden');
+                    modal.classList.toggle('translate-y-full'); // This is the 'hidden' state
                 },
                 
                 playBeep() { // NEW: Plays a sound
@@ -1050,7 +1054,9 @@
                     this.playBeep();
                     
                     // auto-close timer modal
-                    if (!document.getElementById('timer-modal').classList.contains('hidden')) {
+                    // UPDATED: Check for new class
+                    const timerPanel = document.getElementById('timer-modal');
+                    if (!timerPanel.classList.contains('translate-y-full')) {
                         this.toggleModal();
                     }
                     
@@ -1075,4 +1081,6 @@
 
 </body>
 </html>
+
+
 
