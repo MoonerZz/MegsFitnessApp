@@ -19,7 +19,12 @@
             timer: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
             chevronUp: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>`,
             chevronDown: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>`,
-            refresh: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644A11.952 11.952 0 0 0 12 21.75c5.614 0 10.224-3.957 11.16-9.075H12.378M19.015 4.356A11.953 11.953 0 0 0 12 2.25C6.386 2.25 1.776 6.207.84 11.325H11.622" /></svg>`
+            refresh: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644A11.952 11.952 0 0 0 12 21.75c5.614 0 10.224-3.957 11.16-9.075H12.378M19.015 4.356A11.953 11.953 0 0 0 12 2.25C6.386 2.25 1.776 6.207.84 11.325H11.622" /></svg>`,
+            // NEW: Profile Icon
+            profile: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
+            // NEW: Trash and Swap Icons
+            trash: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12.548 0A48.108 48.108 0 0 1 6.75 5.39m7.5 0v-.375c0-.621-.504-1.125-1.125-1.125S11.25 4.89 11.25 5.39v.375m0 0H6.75m7.5 0-1.125-1.125" /></svg>`,
+            swap: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-6L21 6m0 0L16.5 1.5M21 6H7.5" /></svg>`
         };
     </script>
     
@@ -36,6 +41,7 @@
             --color-card: #FFFFFF;
             --color-primary: #F1D4D4; /* Pastel Pink */
             --color-primary-dark: #E6A4B4; /* Darker Pink */
+            --color-secondary: #E0D4F1; /* NEW: Pale Purple */
             --color-text: #4a4a4a;
             --color-text-light: #777;
         }
@@ -51,20 +57,83 @@
         .border-primary-dark { border-color: var(--color-primary-dark); }
         
         .btn {
-            @apply px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main;
+            /* @apply px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main; */
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+            font-weight: 600;
+            color: var(--color-text);
         }
         .btn-primary {
-            @apply bg-primary hover:bg-primary-dark text-main;
+            /* @apply bg-primary hover:bg-primary-dark text-main; */
+            background-color: var(--color-primary);
+            color: var(--color-text);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
         }
         
         /* Material 3 style inputs - UPDATED */
         .form-input {
-            @apply w-full px-3 py-2 border border-primary-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark transition-all;
+            /* @apply w-full px-3 py-2 border border-primary-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark transition-all; */
+            width: 100%;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-width: 1px;
+            border-color: var(--color-primary-dark);
+            border-radius: 0.5rem;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        .form-input:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            --tw-ring-color: var(--color-primary-dark);
+            box-shadow: 0 0 0 2px var(--tw-ring-color);
+        }
+
+        /* NEW: Textarea */
+        .form-textarea {
+            /* @apply w-full px-3 py-2 border border-primary-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark transition-all; */
+            width: 100%;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-width: 1px;
+            border-color: var(--color-primary-dark);
+            border-radius: 0.5rem;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        .form-textarea:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            --tw-ring-color: var(--color-primary-dark);
+            box-shadow: 0 0 0 2px var(--tw-ring-color);
         }
 
         /* Navigation */
         .nav-item {
-            @apply flex flex-col justify-center w-full text-light transition-all; /* UPDATED: Removed items-center */
+            /* @apply flex flex-col justify-center w-full text-light transition-all; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            color: var(--color-text-light);
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
         }
         .nav-item.active {
             color: var(--color-primary-dark);
@@ -98,6 +167,69 @@
             opacity: 0;
             transform: translateY(-10px);
         }
+
+        /* NEW: Profile Image */
+        .profile-img {
+            /* @apply w-32 h-32 rounded-full object-cover border-4 border-primary bg-gray-200 mx-auto; */
+            width: 8rem;
+            height: 8rem;
+            border-radius: 9999px;
+            object-fit: cover;
+            border-width: 4px;
+            border-color: var(--color-primary);
+            background-color: #e5e7eb;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* NEW: Difficulty Slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            /* @apply w-full h-2 bg-primary/50 rounded-lg cursor-pointer; */
+            width: 100%;
+            height: 0.5rem;
+            background-color: rgba(241, 212, 212, 0.5); /* bg-primary/50 */
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        /* UPDATED: Fixed slider thumb by using raw CSS instead of @apply */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: var(--color-primary-dark);
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: var(--color-primary-dark);
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            border: 0;
+        }
+        
+        /* NEW: Exercise card action buttons */
+        .card-action-btn {
+            /* @apply w-7 h-7 flex items-center justify-center rounded-full text-light transition-all; */
+            /* @apply bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700; */
+            width: 1.75rem;
+            height: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            color: #6b7280; /* text-gray-500 */
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+        .card-action-btn:hover {
+            background-color: #e5e7eb; /* hover:bg-gray-200 */
+            color: #374151; /* hover:text-gray-700 */
+        }
     </style>
     
     <!-- Pre-load Inter font -->
@@ -110,13 +242,17 @@
 
     <!-- Main App Container -->
     <!-- Simulates a mobile view, centered on desktop -->
-    <!-- UPDATED: Added gradient background -->
-    <div class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl" style="background-image: linear-gradient(to bottom, var(--color-bg) 10%, var(--color-primary) 100%);">
+    <!-- UPDATED: Added new gradient background -->
+    <div class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl" style="background-image: linear-gradient(to bottom, var(--color-bg) 10%, var(--color-secondary) 100%);">
         
         <!-- Header -->
-        <!-- UPDATED: New pastel pink background and dark text -->
-        <header class="text-center p-4 shadow-md bg-primary sticky top-0 z-10">
+        <!-- UPDATED: Added flex and profile button -->
+        <header class="flex justify-between items-center p-4 shadow-md bg-primary sticky top-0 z-10">
+            <div class="w-8"></div> <!-- Spacer -->
             <h1 class="text-2xl font-bold text-main">Meg's Fitness App</h1>
+            <button onclick="app.showView('view-profile')" class="text-main p-1 rounded-full hover:bg-white/30" aria-label="Open Profile">
+                <span id="nav-icon-profile"></span>
+            </button>
         </header>
 
         <!-- Main Content Area -->
@@ -174,6 +310,34 @@
                 <div id="exercise-list" class_ ="space-y-4">
                     <!-- Content populated by JS -->
                 </div>
+
+                <!-- NEW: Workout Finishers -->
+                <div id="workout-finishers" class="hidden space-y-6">
+                    <!-- Add Extra Exercise -->
+                    <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
+                        <h3 class="text-lg font-semibold mb-3">Add Extra Exercise</h3>
+                        <div class="flex space-x-2">
+                            <select id="add-exercise-select" class="form-input">
+                                <!-- Options populated by JS -->
+                            </select>
+                            <button onclick="app.addSelectedExercise()" class="btn btn-primary flex-shrink-0">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Daily Difficulty Slider -->
+                    <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
+                        <h3 class="text-lg font-semibold mb-3">How was today's workout?</h3>
+                        <input type="range" id="difficulty-slider" min="1" max="5" value="3" class="w-full">
+                        <div class="flex justify-between text-xs text-light mt-1">
+                            <span>Easy</span>
+                            <span>Moderate</span>
+                            <span>Hard</span>
+                        </div>
+                        <button id="save-difficulty-btn" onclick="app.saveDailyDifficulty()" class="btn btn-primary w-full mt-4">
+                            Save Day's Rating
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- View: History -->
@@ -194,6 +358,14 @@
                         <canvas id="progress-chart"></canvas>
                     </div>
                 </div>
+
+                <!-- NEW: Difficulty Chart -->
+                <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-3">Daily Difficulty</h3>
+                    <div class="w-full h-64">
+                        <canvas id="difficulty-chart"></canvas>
+                    </div>
+                </div>
                 
                 <!-- Log History Table -->
                 <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
@@ -202,6 +374,42 @@
                         <!-- List populated by JS -->
                         <p class="text-light text-center">Select an exercise to see your history.</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- NEW: View: Profile -->
+            <div id="view-profile" class="hidden space-y-6">
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-xl font-semibold mb-6 text-center">Your Profile</h2>
+
+                    <!-- Profile Picture -->
+                    <div class="relative w-32 h-32 mx-auto mb-4">
+                        <img id="profile-pic" src="https://placehold.co/128x128/F1D4D4/4a4a4a?text=Meg" alt="Profile Picture" class="profile-img">
+                        <label for="image-uploader" class="absolute bottom-0 right-0 bg-primary-dark text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                        </label>
+                        <input type="file" id="image-uploader" accept="image/*" class="hidden" onchange="app.profile.handleImageUpload(event)">
+                    </div>
+
+                    <!-- Details -->
+                    <div class="space-y-4">
+                        <div>
+                            <label for="profile-height" class="block text-sm font-medium text-light mb-1">Height (cm)</label>
+                            <input type="number" id="profile-height" class="form-input" placeholder="e.g. 165">
+                        </div>
+                        <div>
+                            <label for="profile-weight" class="block text-sm font-medium text-light mb-1">Weight (kg)</label>
+                            <input type="number" id="profile-weight" class="form-input" placeholder="e.g. 60">
+                        </div>
+                        <div>
+                            <label for="profile-measurements" class="block text-sm font-medium text-light mb-1">Body Measurements (Optional)</label>
+                            <textarea id="profile-measurements" rows="4" class="form-textarea" placeholder="e.g.&#10;Arm: 30cm&#10;Waist: 70cm&#10;..."></textarea>
+                        </div>
+                        <button onclick="app.profile.save()" class="btn btn-primary w-full">
+                            Save Profile
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
@@ -240,6 +448,36 @@
         <!-- NEW: Countdown Modal -->
         <div id="countdown-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
             <div id="countdown-text" class="text-9xl font-bold text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.5);">3</div>
+        </div>
+
+        <!-- NEW: Replace Exercise Modal -->
+        <div id="replace-modal" class="fixed left-0 right-0 bottom-0 z-50 w-full transition-transform duration-300 ease-in-out transform translate-y-full">
+            <div class="bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.05)] rounded-t-lg border-t border-gray-200 w-full max-w-md mx-auto">
+                <!-- Header -->
+                <div class="flex justify-between items-center p-3 border-b border-gray-200">
+                    <div class="flex items-center space-x-2">
+                        <!-- UPDATED: Fixed broken icon by inlining the SVG -->
+                        <span class="text-primary-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-6L21 6m0 0L16.5 1.5M21 6H7.5"></path>
+                            </svg>
+                        </span>
+                        <span class="font-semibold">Replace Exercise</span>
+                    </div>
+                    <button onclick="app.hideReplaceModal()" class="p-1 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+                </div>
+                
+                <!-- Body -->
+                <div class="p-4 space-y-3">
+                    <p class="text-sm text-light">Select a new exercise to replace <strong id="replace-old-name">...</strong></p>
+                    <select id="replace-exercise-select" class="form-input">
+                        <!-- Options populated by JS -->
+                    </select>
+                    <button onclick="app.doReplaceExercise()" class="btn btn-primary w-full">
+                        Replace
+                    </button>
+                </div>
+            </div>
         </div>
 
 
@@ -397,8 +635,12 @@
 
         const app = {
             history: [],
+            difficultyLog: [], // NEW
             currentView: 'view-home',
             chartInstance: null,
+            difficultyChartInstance: null, // NEW
+            currentWorkout: { week: 1, dayIndex: 0 }, // NEW
+            currentReplace: { exId: null, oldName: null }, // NEW
             // UPDATED: More Quotes
             quotes: [
                 { text: "It never gets easier, you just get faster.", author: "Greg LeMond" },
@@ -413,12 +655,14 @@
             init() {
                 // Load data
                 this.loadHistory();
+                this.loadDifficultyLog(); // NEW
                 
                 // Set up UI
                 this.injectIcons();
                 this.renderWeekSelector();
                 this.renderDays();
                 this.renderHistoryExerciseSelector();
+                this.profile.load(); // NEW
                 
                 // NEW: Load initial quote
                 this.refreshQuote(true);
@@ -436,6 +680,7 @@
                 document.getElementById('nav-icon-history').innerHTML = ICONS.history;
                 document.getElementById('nav-icon-timer').innerHTML = ICONS.timer; // For the nav bar
                 document.getElementById('timer-icon').innerHTML = ICONS.timer; // For the modal
+                document.getElementById('nav-icon-profile').innerHTML = ICONS.profile; // NEW
                 // NEW:
                 if (document.getElementById('refresh-quote-icon')) {
                     document.getElementById('refresh-quote-icon').innerHTML = ICONS.refresh;
@@ -450,6 +695,50 @@
             
             saveHistory() {
                 localStorage.setItem('megsFitnessApp_history', JSON.stringify(this.history));
+            },
+            
+            // NEW: Difficulty Log functions
+            loadDifficultyLog() {
+                const storedLog = localStorage.getItem('megsFitnessApp_difficultyLog');
+                this.difficultyLog = storedLog ? JSON.parse(storedLog) : [];
+            },
+            
+            saveDifficultyLog() {
+                localStorage.setItem('megsFitnessApp_difficultyLog', JSON.stringify(this.difficultyLog));
+            },
+
+            // NEW: Save daily difficulty
+            saveDailyDifficulty() {
+                const slider = document.getElementById('difficulty-slider');
+                const rating = slider.value;
+                const { week, dayIndex } = this.currentWorkout;
+                const dayName = PROGRAM.days[dayIndex].name.split(':')[0]; // "Day 1"
+
+                const logEntry = {
+                    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+                    week: parseInt(week),
+                    day: dayName,
+                    rating: parseInt(rating)
+                };
+
+                // Remove duplicate entry for the same day
+                const existingIndex = this.difficultyLog.findIndex(entry => entry.date === logEntry.date && entry.week === logEntry.week && entry.day === logEntry.day);
+                if (existingIndex > -1) {
+                    this.difficultyLog.splice(existingIndex, 1);
+                }
+
+                this.difficultyLog.push(logEntry);
+                this.saveDifficultyLog();
+
+                // Show feedback
+                const btn = document.getElementById('save-difficulty-btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Saved!';
+                btn.classList.add('goal-met'); // Re-use green style
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('goal-met');
+                }, 2000);
             },
             
             // UPDATED logSet function
@@ -629,6 +918,7 @@
                 document.getElementById('view-home').classList.add('hidden');
                 document.getElementById('view-workout').classList.add('hidden');
                 document.getElementById('view-history').classList.add('hidden');
+                document.getElementById('view-profile').classList.add('hidden'); // NEW
                 
                 // Show selected view
                 document.getElementById(viewId).classList.remove('hidden');
@@ -640,6 +930,7 @@
                 
                 if (viewId === 'view-home') document.getElementById('nav-home').classList.add('active');
                 if (viewId === 'view-workout') document.getElementById('nav-workout').classList.add('active');
+                if (viewId === 'view-profile') {} // No nav item for profile
                 if (viewId === 'view-history') {
                     document.getElementById('nav-history').classList.add('active');
                     this.renderHistory(); // Re-render chart when viewing
@@ -705,8 +996,10 @@
             renderDays() {
                 const daySelector = document.getElementById('day-selector');
                 const exerciseList = document.getElementById('exercise-list');
+                const finishers = document.getElementById('workout-finishers'); // NEW
                 daySelector.innerHTML = ''; // Clear days
                 exerciseList.innerHTML = ''; // Clear exercises
+                finishers.classList.add('hidden'); // NEW: Hide finishers
                 
                 PROGRAM.days.forEach((day, index) => {
                     daySelector.innerHTML += `
@@ -798,11 +1091,69 @@
                 return best;
             },
 
+            // NEW: Helper to render a single exercise card
+            renderSingleExercise(ex, week, dayIndex, isManuallyAdded = false) {
+                const exId = ex.name.replace(/\s+/g, '-') + (isManuallyAdded ? '-manual' : '');
+                const best1RM = this.getBest1RM(ex.name); // Get best 1RM
+                
+                return `
+                    <div id="card-${exId}" data-goal-sets="${ex.sets}" data-sets-logged="0" class="bg-card p-4 rounded-xl shadow-lg shadow-primary/20 border border-primary/40 space-y-3 mb-4 transition-all">
+                        <!-- UPDATED Header with replace/delete -->
+                        <div class="flex justify-between items-start">
+                            <!-- Left Side: Title -->
+                            <div class="flex-grow">
+                                <h4 class="text-md font-semibold">${ex.name}</h4>
+                                <span id="best-1rm-${exId}" data-best-1rm="${best1RM}" class="text-sm font-bold text-primary-dark">
+                                    ${best1RM > 0 ? `Best: ${best1RM} kg` : ''}
+                                </span>
+                            </div>
+                            <!-- Right Side: New Buttons -->
+                            <div class="flex space-x-1 flex-shrink-0 ml-2">
+                                <button onclick="app.showReplaceModal('${exId}', '${ex.name}')" class="card-action-btn" title="Replace Exercise">
+                                    ${ICONS.swap}
+                                </button>
+                                <button onclick="app.deleteExerciseCard('${exId}')" class="card-action-btn" title="Delete Exercise">
+                                    ${ICONS.trash}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <p class="text-sm text-light">Goal: ${ex.sets} sets x ${ex.reps} reps</p>
+                        
+                        <div class="flex items-center space-x-2">
+                            <input id="weight-${exId}" type="number" placeholder="Weight (kg)" class="form-input w-1/2">
+                            <span class="text-light">x</span>
+                            <input id="reps-${exId}" type="number" placeholder="Reps" class="form-input w-1/2">
+                        </div>
+                        
+                        <button 
+                            onclick="app.logSet(
+                                '${ex.name}', 
+                                '${exId}',
+                                ${week},
+                                ${dayIndex + 1}
+                            )" 
+                            class="w-full text-sm px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main bg-primary hover:bg-primary-dark">
+                            Log Set
+                        </button>
+                        
+                        <!-- NEW: Logged sets container -->
+                        <div id="logged-sets-${exId}" class="space-y-1 mt-3">
+                            <!-- Logged sets will be prepended here -->
+                        </div>
+                    </div>
+                `;
+            },
+
             // UPDATED renderExercises
             renderExercises(dayIndex) {
                 const exerciseList = document.getElementById('exercise-list');
+                const finishers = document.getElementById('workout-finishers'); // NEW
                 const week = document.getElementById('week-select').value;
                 const day = PROGRAM.days[dayIndex];
+                
+                // --- NEW: Store current workout context ---
+                this.currentWorkout = { week: parseInt(week), dayIndex };
                 
                 // --- NEW: Generate workout on the fly ---
                 const generatedExercises = this.generateWorkout(week, dayIndex);
@@ -810,47 +1161,119 @@
                 exerciseList.innerHTML = `<h3 class="text-lg font-semibold mb-3">${day.name}</h3>`;
                 
                 generatedExercises.forEach(ex => {
-                    const exId = ex.name.replace(/\s+/g, '-');
-                    const best1RM = this.getBest1RM(ex.name); // Get best 1RM
-                    
-                    exerciseList.innerHTML += `
-                        <div id="card-${exId}" data-goal-sets="${ex.sets}" data-sets-logged="0" class="bg-card p-4 rounded-xl shadow-lg shadow-primary/20 border border-primary/40 space-y-3 mb-4 transition-all">
-                            <!-- UPDATED Header -->
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-md font-semibold">${ex.name}</h4>
-                                <span id="best-1rm-${exId}" data-best-1rm="${best1RM}" class="text-sm font-bold text-primary-dark">
-                                    ${best1RM > 0 ? `Best: ${best1RM} kg` : ''}
-                                </span>
-                            </div>
-                            
-                            <p class="text-sm text-light">Goal: ${ex.sets} sets x ${ex.reps} reps</p>
-                            
-                            <div class="flex items-center space-x-2">
-                                <input id="weight-${exId}" type="number" placeholder="Weight (kg)" class="form-input w-1/2">
-                                <span class="text-light">x</span>
-                                <input id="reps-${exId}" type="number" placeholder="Reps" class="form-input w-1/2">
-                            </div>
-                            
-                            <button 
-                                onclick="app.logSet(
-                                    '${ex.name}', 
-                                    '${exId}',
-                                    ${week},
-                                    ${dayIndex + 1}
-                                )" 
-                                class="w-full text-sm px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main bg-primary hover:bg-primary-dark">
-                                Log Set
-                            </button>
-                            
-                            <!-- NEW: Logged sets container -->
-                            <div id="logged-sets-${exId}" class="space-y-1 mt-3">
-                                <!-- Logged sets will be prepended here -->
-                            </div>
-                        </div>
-                    `;
+                    // NEW: Use the helper function
+                    exerciseList.innerHTML += this.renderSingleExercise(ex, week, dayIndex);
                 });
+
+                // --- NEW: Show and populate finishers ---
+                this.populateAddExerciseSelect('add-exercise-select'); // Use the 'add' select
+                finishers.classList.remove('hidden');
             },
             
+            // NEW: Populate the add exercise dropdown
+            // UPDATED: Now reusable for different select elements
+            populateAddExerciseSelect(selectId, excludeName = null) {
+                const select = document.getElementById(selectId);
+                let allExercises = new Set();
+                Object.values(EXERCISE_BANK).forEach(category => {
+                    category.forEach(exercise => {
+                        allExercises.add(exercise.name);
+                    });
+                });
+                
+                const sortedExercises = [...allExercises].sort();
+                select.innerHTML = '<option value="">-- Pick an exercise --</option>';
+                sortedExercises.forEach(exName => {
+                    if (exName !== excludeName) {
+                        select.innerHTML += `<option value="${exName}">${exName}</option>`;
+                    }
+                });
+            },
+
+            // NEW: Add the selected exercise to the list
+            addSelectedExercise() {
+                const select = document.getElementById('add-exercise-select');
+                const exerciseName = select.value;
+                if (!exerciseName) return;
+
+                // Find this exercise in the bank to get its base scheme
+                let selectedExercise = null;
+                for (const category of Object.values(EXERCISE_BANK)) {
+                    selectedExercise = category.find(ex => ex.name === exerciseName);
+                    if (selectedExercise) break;
+                }
+
+                if (!selectedExercise) return; // Should never happen
+
+                const { week, dayIndex } = this.currentWorkout;
+                // Get intensity for the week
+                const { sets, reps } = this.getIntensity(week, selectedExercise.baseScheme, selectedExercise.type);
+                
+                const ex = { name: selectedExercise.name, sets, reps };
+                
+                // Use the helper to add it to the DOM
+                const exerciseHTML = this.renderSingleExercise(ex, week, dayIndex, true);
+                document.getElementById('exercise-list').insertAdjacentHTML('beforeend', exerciseHTML);
+
+                // Reset dropdown
+                select.value = '';
+            },
+
+            // NEW: Delete an exercise card
+            deleteExerciseCard(exId) {
+                const card = document.getElementById(`card-${exId}`);
+                if (card) {
+                    card.remove();
+                }
+            },
+
+            // NEW: Functions for the Replace Modal
+            showReplaceModal(exId, oldName) {
+                this.currentReplace = { exId, oldName };
+                
+                // Populate modal text and dropdown
+                document.getElementById('replace-old-name').innerText = oldName;
+                this.populateAddExerciseSelect('replace-exercise-select', oldName);
+                
+                // Show modal
+                document.getElementById('replace-modal').classList.remove('translate-y-full');
+            },
+
+            hideReplaceModal() {
+                document.getElementById('replace-modal').classList.add('translate-y-full');
+            },
+
+            doReplaceExercise() {
+                const newExerciseName = document.getElementById('replace-exercise-select').value;
+                if (!newExerciseName) return;
+
+                const { exId } = this.currentReplace;
+                const oldCard = document.getElementById(`card-${exId}`);
+                if (!oldCard) return;
+
+                // Find this exercise in the bank to get its base scheme
+                let selectedExercise = null;
+                for (const category of Object.values(EXERCISE_BANK)) {
+                    selectedExercise = category.find(ex => ex.name === newExerciseName);
+                    if (selectedExercise) break;
+                }
+                if (!selectedExercise) return;
+
+                const { week, dayIndex } = this.currentWorkout;
+                const { sets, reps } = this.getIntensity(week, selectedExercise.baseScheme, selectedExercise.type);
+                
+                const newEx = { name: selectedExercise.name, sets, reps };
+                
+                // Generate new card HTML
+                const newCardHTML = this.renderSingleExercise(newEx, week, dayIndex, true);
+                
+                // Replace old card with new one
+                oldCard.outerHTML = newCardHTML;
+                
+                // Hide modal
+                this.hideReplaceModal();
+            },
+
             // --- HISTORY VIEW ---
             renderHistoryExerciseSelector() {
                 const select = document.getElementById('exercise-history-select');
@@ -877,6 +1300,9 @@
                 
                 if (this.chartInstance) {
                     this.chartInstance.destroy(); // Clear old chart
+                }
+                if (this.difficultyChartInstance) { // NEW
+                    this.difficultyChartInstance.destroy();
                 }
                 
                 if (!selectedExercise) {
@@ -937,6 +1363,33 @@
                             fill: true,
                             tension: 0.1
                         }]
+                    }
+                });
+                
+                // --- NEW: Render Difficulty Chart ---
+                this.renderDifficultyChart();
+            },
+            
+            // NEW: Render Difficulty Chart
+            renderDifficultyChart() {
+                const ctx = document.getElementById('difficulty-chart').getContext('2d');
+                
+                const sortedData = [...this.difficultyLog].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+                const labels = sortedData.map(entry => `${entry.date.slice(5)} (W${entry.week})`);
+                const data = sortedData.map(entry => entry.rating);
+
+                this.difficultyChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Daily Difficulty Rating (1=Easy, 5=Hard)',
+                            data: data,
+                            backgroundColor: 'rgba(230, 164, 180, 0.5)',
+                            borderColor: 'var(--color-primary-dark)',
+                            borderWidth: 1
+                        }]
                     },
                     options: {
                         responsive: true,
@@ -944,9 +1397,16 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Est. 1RM (kg)'
+                                min: 0,
+                                max: 5,
+                                ticks: {
+                                    stepSize: 1,
+                                    callback: function(value) {
+                                        if (value === 1) return 'Easy';
+                                        if (value === 3) return 'Moderate';
+                                        if (value === 5) return 'Hard';
+                                        return value;
+                                    }
                                 }
                             },
                             x: {
@@ -959,7 +1419,7 @@
                     }
                 });
             },
-            
+
             // --- REST TIMER ---
             timer: {
                 totalSeconds: 90,
@@ -1070,6 +1530,77 @@
                     document.getElementById('timer-display').innerText = 
                         `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
                 }
+            },
+
+            // --- NEW: Profile Object ---
+            profile: {
+                data: {
+                    height: '',
+                    weight: '',
+                    measurements: '',
+                    pic: 'https://placehold.co/128x128/F1D4D4/4a4a4a?text=Meg' // Default
+                },
+
+                init() {
+                    this.load();
+                },
+
+                load() {
+                    const storedProfile = localStorage.getItem('megsFitnessApp_profile');
+                    if (storedProfile) {
+                        this.data = JSON.parse(storedProfile);
+                    }
+                    
+                    const storedPic = localStorage.getItem('megsFitnessApp_profilePic');
+                    if (storedPic) {
+                        this.data.pic = storedPic;
+                    }
+
+                    document.getElementById('profile-height').value = this.data.height || '';
+                    document.getElementById('profile-weight').value = this.data.weight || '';
+                    document.getElementById('profile-measurements').value = this.data.measurements || '';
+                    document.getElementById('profile-pic').src = this.data.pic;
+                },
+
+                save() {
+                    this.data.height = document.getElementById('profile-height').value;
+                    this.data.weight = document.getElementById('profile-weight').value;
+                    this.data.measurements = document.getElementById('profile-measurements').value;
+                    
+                    // Don't save the pic data here, it's saved separately
+                    const { pic, ...profileToSave } = this.data;
+                    localStorage.setItem('megsFitnessApp_profile', JSON.stringify(profileToSave));
+                    
+                    // Show feedback
+                    alert('Profile Saved!'); // Simple alert for now
+                },
+
+                handleImageUpload(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    // Check file size (e.g., < 2MB)
+                    if (file.size > 2 * 1024 * 1024) { // 2MB
+                        alert('Image is too large (max 2MB). Please choose a smaller file.');
+                        event.target.value = null; // Reset file input
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        const base64String = reader.result;
+                        
+                        try {
+                            localStorage.setItem('megsFitnessApp_profilePic', base64String);
+                            document.getElementById('profile-pic').src = base64String;
+                            this.data.pic = base64String; // Update in-memory data
+                        } catch (e) {
+                            console.error('Failed to save image to localStorage:', e);
+                            alert('Failed to save image. It might be too large for your browser\'s storage.');
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
             }
         };
 
@@ -1081,6 +1612,10 @@
 
 </body>
 </html>
+
+
+
+
 
 
 
