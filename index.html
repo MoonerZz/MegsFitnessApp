@@ -35,15 +35,15 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* Define the pastel color scheme */
+        /* Define the pastel color scheme -- UPDATED THEME */
         :root {
-            --color-bg: #FDFBF8; /* Pinky Beige */
+            --color-bg: #F9F4F4; /* Very faint pinky-beige */
             --color-card: #FFFFFF;
-            --color-primary: #F1D4D4; /* Pastel Pink */
-            --color-primary-dark: #E6A4B4; /* Darker Pink */
-            --color-secondary: #E0D4F1; /* NEW: Pale Purple */
-            --color-text: #4a4a4a;
-            --color-text-light: #777;
+            --color-primary: #F1D4D4; /* Pastel Pinky Beige */
+            --color-primary-dark: #E6C5C5; /* Darker Pinky Beige */
+            --color-secondary: #E3E3F3; /* Pale Purple */
+            --color-text: #332E3C; /* Dark, slightly purple text */
+            --color-text-light: #6C667E; /* Lighter, slightly purple text */
         }
         
         /* Apply colors */
@@ -76,7 +76,9 @@
             color: var(--color-text);
         }
         .btn-primary:hover {
+            /* UPDATED: Darker silver with white text for contrast */
             background-color: var(--color-primary-dark);
+            color: var(--color-text);
         }
         
         /* Material 3 style inputs - UPDATED */
@@ -141,22 +143,22 @@
 
         /* NEW: Style for completed exercise */
         .goal-met {
-            background-color: #D9F9E6 !important; /* Pastel Green */
-            border-color: #B7E8C9 !important;
+            background-color: #D1FAE5 !important; /* Tailwind green-100 */
+            border-color: #A7F3D0 !important; /* Tailwind green-200 */
         }
         .goal-met h4 {
-            color: #2D6A4F; /* Dark Green Text */
+            color: #065F46; /* Tailwind green-800 */
         }
 
         /* NEW: Delete set button */
         .delete-set-btn {
             @apply w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold;
-            color: #C16A70; /* Pastel Red Text */
-            background-color: #F8E8E8; /* Pastel Red BG */
+            color: #991B1B; /* red-800 */
+            background-color: #FEE2E2; /* red-100 */
             transition: all 0.2s;
         }
         .delete-set-btn:hover {
-            background-color: #F1DADA;
+            background-color: #FECACA; /* red-200 */
         }
 
         /* NEW: Quote Animation */
@@ -246,7 +248,7 @@
     <div class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl" style="background-image: linear-gradient(to bottom, var(--color-bg) 10%, var(--color-secondary) 100%);">
         
         <!-- Header -->
-        <!-- UPDATED: Added flex and profile button -->
+        <!-- UPDATED: Added flex and profile button. bg-primary is now silver -->
         <header class="flex justify-between items-center p-4 shadow-md bg-primary sticky top-0 z-10">
             <div class="w-8"></div> <!-- Spacer -->
             <h1 class="text-2xl font-bold text-main">Meg's Fitness App</h1>
@@ -384,7 +386,7 @@
 
                     <!-- Profile Picture -->
                     <div class="relative w-32 h-32 mx-auto mb-4">
-                        <img id="profile-pic" src="https://placehold.co/128x128/F1D4D4/4a4a4a?text=Meg" alt="Profile Picture" class="profile-img">
+                        <img id="profile-pic" src="https://placehold.co/128x128/F1D4D4/332E3C?text=Meg" alt="Profile Picture" class="profile-img">
                         <label for="image-uploader" class="absolute bottom-0 right-0 bg-primary-dark text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
                         </label>
@@ -1304,10 +1306,17 @@
                 if (this.difficultyChartInstance) { // NEW
                     this.difficultyChartInstance.destroy();
                 }
+
+                // --- NEW: Render Difficulty Chart (Moved) ---
+                // This is now rendered *before* the exercise check, so it always appears.
+                this.renderDifficultyChart();
                 
                 if (!selectedExercise) {
                     logList.innerHTML = '<p class="text-light text-center">Select an exercise to see your history.</p>';
-                    return;
+                    // Clear the exercise chart canvas if nothing is selected
+                    const ctx = document.getElementById('progress-chart').getContext('2d');
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    return; // Return after clearing
                 }
                 
                 // Filter history for this exercise
@@ -1359,7 +1368,7 @@
                             label: `Est. 1RM Progress (${selectedExercise})`,
                             data: data,
                             borderColor: 'var(--color-primary-dark)',
-                            backgroundColor: 'rgba(230, 164, 180, 0.1)',
+                            backgroundColor: 'rgba(230, 197, 197, 0.1)', // UPDATED
                             fill: true,
                             tension: 0.1
                         }]
@@ -1367,7 +1376,7 @@
                 });
                 
                 // --- NEW: Render Difficulty Chart ---
-                this.renderDifficultyChart();
+                // MOVED from here
             },
             
             // NEW: Render Difficulty Chart
@@ -1386,7 +1395,7 @@
                         datasets: [{
                             label: 'Daily Difficulty Rating (1=Easy, 5=Hard)',
                             data: data,
-                            backgroundColor: 'rgba(230, 164, 180, 0.5)',
+                            backgroundColor: 'rgba(230, 197, 197, 0.5)', // UPDATED
                             borderColor: 'var(--color-primary-dark)',
                             borderWidth: 1
                         }]
@@ -1538,7 +1547,7 @@
                     height: '',
                     weight: '',
                     measurements: '',
-                    pic: 'https://placehold.co/128x128/F1D4D4/4a4a4a?text=Meg' // Default
+                    pic: 'https://placehold.co/128x128/F1D4D4/332E3C?text=Meg' // Default
                 },
 
                 init() {
@@ -1612,10 +1621,5 @@
 
 </body>
 </html>
-
-
-
-
-
 
 
