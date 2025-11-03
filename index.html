@@ -13,16 +13,12 @@
     <!-- 3. SVG Icons (Heroicons) -->
     <script>
         const ICONS = {
-            home: `<svg xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.44 1.152-.44 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
+            home: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.44 1.152-.44 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
             workout: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" /><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5v3c0 .828.672 1.5 1.5 1.5h1.5v-6H4.5c-.828 0-1.5.672-1.5 1.5z" /><path stroke-linecap="round" stroke-linejoin="round" d="M18 10.5v3c0 .828.672 1.5 1.5 1.5h1.5v-6H19.5c-.828 0-1.5.672-1.5 1.5z" /></svg>`, // Dumbbell Icon
             history: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" /></svg>`, // History/Library Icon
             timer: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
-            chevronUp: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>`,
-            chevronDown: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>`,
             refresh: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644A11.952 11.952 0 0 0 12 21.75c5.614 0 10.224-3.957 11.16-9.075H12.378M19.015 4.356A11.953 11.953 0 0 0 12 2.25C6.386 2.25 1.776 6.207.84 11.325H11.622" /></svg>`,
-            // NEW: Profile Icon
             profile: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
-            // NEW: Trash and Swap Icons
             trash: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12.548 0A48.108 48.108 0 0 1 6.75 5.39m7.5 0v-.375c0-.621-.504-1.125-1.125-1.125S11.25 4.89 11.25 5.39v.375m0 0H6.75m7.5 0-1.125-1.125" /></svg>`,
             swap: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-6L21 6m0 0L16.5 1.5M21 6H7.5" /></svg>`
         };
@@ -56,8 +52,8 @@
         .border-primary { border-color: var(--color-primary); }
         .border-primary-dark { border-color: var(--color-primary-dark); }
         
+        /* Manually "compiled" @apply classes */
         .btn {
-            /* @apply px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main; */
             padding-left: 1rem;
             padding-right: 1rem;
             padding-top: 0.5rem;
@@ -71,19 +67,15 @@
             color: var(--color-text);
         }
         .btn-primary {
-            /* @apply bg-primary hover:bg-primary-dark text-main; */
             background-color: var(--color-primary);
             color: var(--color-text);
         }
         .btn-primary:hover {
-            /* UPDATED: Darker silver with white text for contrast */
             background-color: var(--color-primary-dark);
             color: var(--color-text);
         }
         
-        /* Material 3 style inputs - UPDATED */
         .form-input {
-            /* @apply w-full px-3 py-2 border border-primary-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark transition-all; */
             width: 100%;
             padding-left: 0.75rem;
             padding-right: 0.75rem;
@@ -103,9 +95,7 @@
             box-shadow: 0 0 0 2px var(--tw-ring-color);
         }
 
-        /* NEW: Textarea */
         .form-textarea {
-            /* @apply w-full px-3 py-2 border border-primary-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark transition-all; */
             width: 100%;
             padding-left: 0.75rem;
             padding-right: 0.75rem;
@@ -127,7 +117,6 @@
 
         /* Navigation */
         .nav-item {
-            /* @apply flex flex-col justify-center w-full text-light transition-all; */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -141,27 +130,37 @@
             color: var(--color-primary-dark);
         }
 
-        /* NEW: Style for completed exercise */
+        /* Style for completed exercise */
         .goal-met {
-            background-color: #D1FAE5 !important; /* Tailwind green-100 */
-            border-color: #A7F3D0 !important; /* Tailwind green-200 */
+            background-color: #D1FAE5 !important;
+            border-color: #A7F3D0 !important;
         }
         .goal-met h4 {
-            color: #065F46; /* Tailwind green-800 */
+            color: #065F46;
         }
 
-        /* NEW: Delete set button */
+        /* Delete set button */
         .delete-set-btn {
-            @apply w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold;
-            color: #991B1B; /* red-800 */
-            background-color: #FEE2E2; /* red-100 */
-            transition: all 0.2s;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 700;
+            color: #991B1B;
+            background-color: #FEE2E2;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
         }
         .delete-set-btn:hover {
-            background-color: #FECACA; /* red-200 */
+            background-color: #FECACA;
         }
 
-        /* NEW: Quote Animation */
+        /* Quote Animation */
         #quote-content {
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
@@ -170,9 +169,8 @@
             transform: translateY(-10px);
         }
 
-        /* NEW: Profile Image */
+        /* Profile Image */
         .profile-img {
-            /* @apply w-32 h-32 rounded-full object-cover border-4 border-primary bg-gray-200 mx-auto; */
             width: 8rem;
             height: 8rem;
             border-radius: 9999px;
@@ -184,17 +182,15 @@
             margin-right: auto;
         }
 
-        /* NEW: Difficulty Slider */
+        /* Difficulty Slider */
         input[type="range"] {
             -webkit-appearance: none;
-            /* @apply w-full h-2 bg-primary/50 rounded-lg cursor-pointer; */
             width: 100%;
             height: 0.5rem;
             background-color: rgba(241, 212, 212, 0.5); /* bg-primary/50 */
             border-radius: 0.5rem;
             cursor: pointer;
         }
-        /* UPDATED: Fixed slider thumb by using raw CSS instead of @apply */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 1.25rem;
@@ -212,26 +208,36 @@
             border: 0;
         }
         
-        /* NEW: Exercise card action buttons */
+        /* Exercise card action buttons */
         .card-action-btn {
-            /* @apply w-7 h-7 flex items-center justify-center rounded-full text-light transition-all; */
-            /* @apply bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700; */
             width: 1.75rem;
             height: 1.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 9999px;
-            color: #6b7280; /* text-gray-500 */
+            color: #6b7280;
             transition-property: all;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 150ms;
-            background-color: #f3f4f6; /* bg-gray-100 */
+            background-color: #f3f4f6;
         }
         .card-action-btn:hover {
-            background-color: #e5e7eb; /* hover:bg-gray-200 */
-            color: #374151; /* hover:text-gray-700 */
+            background-color: #e5e7eb;
+            color: #374151;
         }
+
+        /* NEW: Search Suggestions */
+        .suggestion-item {
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        .suggestion-item:hover {
+            background-color: #f3f4f6; /* gray-100 */
+        }
+        
     </style>
     
     <!-- Pre-load Inter font -->
@@ -243,12 +249,9 @@
 <body class="bg-app text-main">
 
     <!-- Main App Container -->
-    <!-- Simulates a mobile view, centered on desktop -->
-    <!-- UPDATED: Added new gradient background -->
     <div class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl" style="background-image: linear-gradient(to bottom, var(--color-bg) 10%, var(--color-secondary) 100%);">
         
         <!-- Header -->
-        <!-- UPDATED: Added flex and profile button. bg-primary is now pastel -->
         <header class="flex justify-between items-center p-4 shadow-md bg-primary sticky top-0 z-10">
             <div class="w-8"></div> <!-- Spacer -->
             <h1 class="text-2xl font-bold text-main">Meg's Fitness App</h1>
@@ -265,14 +268,11 @@
                 <div class="bg-card p-6 rounded-lg shadow-md border border-gray-100 relative">
                     <h2 class="text-xl font-semibold mb-3">Welcome, Meg!</h2>
                     
-                    <!-- NEW: Refresh Button -->
                     <button id="refresh-quote-btn" onclick="app.refreshQuote()" class="absolute top-4 right-4 p-2 rounded-full text-light hover:bg-gray-100 transition-all" aria-label="Refresh quote">
                         <span id="refresh-quote-icon"></span>
                     </button>
                     
-                    <!-- NEW: Quote Content Wrapper -->
                     <div id="quote-content">
-                        <!-- Content injected by JS -->
                         <p class="text-light italic text-center">
                             "It never gets easier, you just get faster."
                         </p>
@@ -292,7 +292,7 @@
             <!-- View: Workout -->
             <div id="view-workout" class="hidden space-y-6">
                 <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
-                    <h2 class="text-xl font-semibold mb-4">8 Week Program</h2>
+                    <h2 class="text-xl font-semibold mb-4">My Logbook</h2>
                     
                     <!-- Week Selector -->
                     <div class="mb-4">
@@ -308,24 +308,27 @@
                     </div>
                 </div>
                 
+                <!-- NEW: Add Exercise UI (now at top) -->
+                <div id="add-exercise-ui" class="hidden bg-card p-4 rounded-lg shadow-md border border-gray-100 space-y-3 relative">
+                    <h3 class="text-lg font-semibold">Add Exercise</h3>
+                    <div class="flex space-x-2">
+                        <input type="text" id="add-exercise-input" class="form-input" placeholder="Type exercise name..." onkeyup="app.renderSearchSuggestions(event)">
+                        <button onclick="app.addCustomExercise()" class="btn btn-primary flex-shrink-0">Add</button>
+                    </div>
+                    <!-- Search suggestions dropdown -->
+                    <div id="search-suggestions" class="absolute top-full left-4 right-4 z-10 bg-white border border-gray-200 rounded-b-lg shadow-lg max-h-48 overflow-y-auto hidden">
+                        <!-- Suggestions populated by JS -->
+                    </div>
+                    <p class="text-xs text-light">Type a custom name, or select from the suggestions that appear.</p>
+                </div>
+
                 <!-- Exercises for selected day -->
                 <div id="exercise-list" class_ ="space-y-4">
                     <!-- Content populated by JS -->
                 </div>
 
-                <!-- NEW: Workout Finishers -->
+                <!-- Workout Finishers (Difficulty Slider) -->
                 <div id="workout-finishers" class="hidden space-y-6">
-                    <!-- Add Extra Exercise -->
-                    <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
-                        <h3 class="text-lg font-semibold mb-3">Add Extra Exercise</h3>
-                        <div class="flex space-x-2">
-                            <select id="add-exercise-select" class="form-input">
-                                <!-- Options populated by JS -->
-                            </select>
-                            <button onclick="app.addSelectedExercise()" class="btn btn-primary flex-shrink-0">Add</button>
-                        </div>
-                    </div>
-
                     <!-- Daily Difficulty Slider -->
                     <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
                         <h3 class="text-lg font-semibold mb-3">How was today's workout?</h3>
@@ -361,7 +364,7 @@
                     </div>
                 </div>
 
-                <!-- NEW: Difficulty Chart -->
+                <!-- Difficulty Chart -->
                 <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
                     <h3 class="text-lg font-semibold mb-3">Daily Difficulty</h3>
                     <div class="w-full h-64">
@@ -373,13 +376,12 @@
                 <div class="bg-card p-4 rounded-lg shadow-md border border-gray-100">
                     <h3 class="text-lg font-semibold mb-3">Full Log</h3>
                     <div id="history-log-list" class="space-y-2 max-h-64 overflow-y-auto">
-                        <!-- List populated by JS -->
                         <p class="text-light text-center">Select an exercise to see your history.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- NEW: View: Profile -->
+            <!-- View: Profile -->
             <div id="view-profile" class="hidden space-y-6">
                 <div class="bg-card p-6 rounded-lg shadow-md border border-gray-100">
                     <h2 class="text-xl font-semibold mb-6 text-center">Your Profile</h2>
@@ -418,10 +420,8 @@
         </main>
         
         <!-- Collapsible Rest Timer -->
-        <!-- UPDATED: This is now a panel that slides up from the bottom, no overlay -->
         <div id="timer-modal" class="fixed left-0 right-0 bottom-0 z-50 w-full transition-transform duration-300 ease-in-out transform translate-y-full">
             <div class="bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.05)] rounded-t-lg border-t border-gray-200 w-full max-w-md mx-auto">
-                <!-- Timer Header -->
                 <div class="flex justify-between items-center p-3 border-b border-gray-200">
                     <div class="flex items-center space-x-2">
                         <span id="timer-icon" class="text-primary-dark"></span>
@@ -430,7 +430,6 @@
                     <button onclick="app.timer.toggleModal()" class="p-1 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
                 </div>
                 
-                <!-- Timer Body -->
                 <div id="timer-body" class="p-4 space-y-3">
                     <div class="text-center">
                         <span id="timer-display" class="text-5xl font-bold text-main">01:30</span>
@@ -447,18 +446,16 @@
             </div>
         </div>
         
-        <!-- NEW: Countdown Modal -->
+        <!-- Countdown Modal -->
         <div id="countdown-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
             <div id="countdown-text" class="text-9xl font-bold text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.5);">3</div>
         </div>
 
-        <!-- NEW: Replace Exercise Modal -->
+        <!-- Replace Exercise Modal -->
         <div id="replace-modal" class="fixed left-0 right-0 bottom-0 z-50 w-full transition-transform duration-300 ease-in-out transform translate-y-full">
             <div class="bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.05)] rounded-t-lg border-t border-gray-200 w-full max-w-md mx-auto">
-                <!-- Header -->
                 <div class="flex justify-between items-center p-3 border-b border-gray-200">
                     <div class="flex items-center space-x-2">
-                        <!-- UPDATED: Fixed broken icon by inlining the SVG -->
                         <span class="text-primary-dark">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-6L21 6m0 0L16.5 1.5M21 6H7.5"></path>
@@ -469,7 +466,6 @@
                     <button onclick="app.hideReplaceModal()" class="p-1 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
                 </div>
                 
-                <!-- Body -->
                 <div class="p-4 space-y-3">
                     <p class="text-sm text-light">Select a new exercise to replace <strong id="replace-old-name">...</strong></p>
                     <select id="replace-exercise-select" class="form-input">
@@ -486,22 +482,18 @@
         <!-- Bottom Navigation -->
         <nav class="grid grid-cols-4 p-4 shadow-[0_-2px_5px_rgba(0,0,0,0.05)] bg-card sticky bottom-0 z-10 border-t border-gray-100">
             <button id="nav-home" onclick="app.showView('view-home')" class="nav-item active">
-                <!-- UPDATED: Added classes to center the icon -->
                 <span id="nav-icon-home" class="w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">Home</span>
             </button>
             <button id="nav-workout" onclick="app.showView('view-workout')" class="nav-item">
-                <!-- UPDATED: Added classes to center the icon -->
                 <span id="nav-icon-workout" class="w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">Workout</span>
             </button>
             <button id="nav-history" onclick="app.showView('view-history')" class="nav-item">
-                <!-- UPDATED: Added classes to center the icon -->
                 <span id="nav-icon-history" class="w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">History</span>
             </button>
             <button id="nav-timer" onclick="app.timer.toggleModal()" class="nav-item">
-                <!-- UPDATED: Added classes to center the icon -->
                 <span id="nav-icon-timer" class="text-light w-full flex justify-center"></span>
                 <span class="text-xs font-medium w-full text-center">Timer</span>
             </button>
@@ -512,136 +504,81 @@
     
     <!-- JavaScript Application Logic -->
     <script>
-        // --- 8-Week, 5-Day Split Program ---
         
-        // --- NEW: Exercise Bank ---
-        // This bank categorizes exercises to be picked dynamically.
+        // --- NEW: Exercise Bank (Used for search suggestions) ---
         const EXERCISE_BANK = {
-            // Chest
             chest_compound: [
-                { name: "Bench Press", type: 'strength', baseScheme: { sets: 5, reps: 5 } },
-                { name: "Incline Bench Press", type: 'strength', baseScheme: { sets: 4, reps: 6 } },
-                { name: "Dumbbell Bench Press", type: 'hypertrophy', baseScheme: { sets: 4, reps: 8 } },
+                { name: "Bench Press" }, { name: "Incline Bench Press" }, { name: "Dumbbell Bench Press" },
             ],
             chest_isolation: [
-                { name: "Dumbbell Flyes", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Cable Crossovers", type: 'hypertrophy', baseScheme: { sets: 3, reps: 15 } },
-                { name: "Pec Deck Machine", type: 'hypertrophy', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Dumbbell Flyes" }, { name: "Cable Crossovers" }, { name: "Pec Deck Machine" },
             ],
             chest_pushup: [
-                { name: "Push-ups", type: 'endurance', baseScheme: { sets: 3, reps: 'AMRAP' } },
-                { name: "Incline Push-ups", type: 'endurance', baseScheme: { sets: 3, reps: 'AMRAP' } },
-                { name: "Decline Push-ups", type: 'endurance', baseScheme: { sets: 3, reps: 'AMRAP' } },
+                { name: "Push-ups" }, { name: "Incline Push-ups" }, { name: "Decline Push-ups" },
             ],
-            // Back
             back_compound_heavy: [
-                { name: "Deadlift", type: 'strength', baseScheme: { sets: 1, reps: 5 } }, // Special case, 1 working set
-                { name: "Rack Pulls", type: 'strength', baseScheme: { sets: 3, reps: 5 } },
+                { name: "Deadlift" }, { name: "Rack Pulls" },
             ],
             back_vertical_pull: [
-                { name: "Pull-ups", type: 'hypertrophy', baseScheme: { sets: 4, reps: 8 } },
-                { name: "Lat Pulldown", type: 'hypertrophy', baseScheme: { sets: 4, reps: 10 } },
-                { name: "Close Grip Pulldown", type: 'hypertrophy', baseScheme: { sets: 4, reps: 10 } },
+                { name: "Pull-ups" }, { name: "Lat Pulldown" }, { name: "Close Grip Pulldown" },
             ],
             back_horizontal_row: [
-                { name: "Barbell Row", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
-                { name: "Dumbbell Row", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
-                { name: "Seated Cable Row", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Barbell Row" }, { name: "Dumbbell Row" }, { name: "Seated Cable Row" },
             ],
             back_rear_delts: [
-                { name: "Face Pulls", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
-                { name: "Reverse Pec Deck", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Face Pulls" }, { name: "Reverse Pec Deck" },
             ],
-            // Legs
             leg_squat: [
-                { name: "Squat", type: 'strength', baseScheme: { sets: 5, reps: 5 } },
-                { name: "Front Squat", type: 'strength', baseScheme: { sets: 4, reps: 6 } },
-                { name: "Leg Press", type: 'hypertrophy', baseScheme: { sets: 4, reps: 10 } },
+                { name: "Squat" }, { name: "Front Squat" }, { name: "Leg Press" },
             ],
             leg_hinge: [
-                { name: "Romanian Deadlift (RDL)", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
-                { name: "Good Mornings", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Glute Ham Raise", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Romanian Deadlift (RDL)" }, { name: "Good Mornings" }, { name: "Glute Ham Raise" },
             ],
             leg_accessory: [
-                { name: "Lunges", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Leg Extensions", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
-                { name: "Leg Curls", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Lunges" }, { name: "Leg Extensions" }, { name: "Leg Curls" }, { name: "Bulgarian Split Squats" },
             ],
             leg_calves: [
-                { name: "Calf Raises", type: 'isolation', baseScheme: { sets: 4, reps: 15 } },
-                { name: "Seated Calf Raises", type: 'isolation', baseScheme: { sets: 4, reps: 20 } },
+                { name: "Calf Raises" }, { name: "Seated Calf Raises" },
             ],
-            // Shoulders
             shoulder_press: [
-                { name: "Overhead Press (OHP)", type: 'strength', baseScheme: { sets: 5, reps: 5 } },
-                { name: "Dumbbell Shoulder Press", type: 'hypertrophy', baseScheme: { sets: 4, reps: 8 } },
-                { name: "Arnold Press", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Overhead Press (OHP)" }, { name: "Dumbbell Shoulder Press" }, { name: "Arnold Press" },
             ],
             shoulder_lateral: [
-                { name: "Lateral Raises", type: 'isolation', baseScheme: { sets: 4, reps: 12 } },
-                { name: "Cable Lateral Raises", type: 'isolation', baseScheme: { sets: 4, reps: 15 } },
+                { name: "Lateral Raises" }, { name: "Cable Lateral Raises" },
             ],
             shoulder_front: [
-                { name: "Front Raises", type: 'isolation', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Plate Raises", type: 'isolation', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Front Raises" }, { name: "Plate Raises" },
             ],
-            // Arms
             biceps_curl: [
-                { name: "Barbell Curl", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
-                { name: "Dumbbell Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Incline Dumbbell Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
+                { name: "Barbell Curl" }, { name: "Dumbbell Curls" }, { name: "Incline Dumbbell Curls" },
             ],
             biceps_hammer: [
-                { name: "Hammer Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Rope Hammer Curls", type: 'hypertrophy', baseScheme: { sets: 3, reps: 15 } },
+                { name: "Hammer Curls" }, { name: "Rope Hammer Curls" },
             ],
             triceps_compound: [
-                { name: "Close Grip Bench Press", type: 'strength', baseScheme: { sets: 4, reps: 8 } },
-                { name: "Dips", type: 'hypertrophy', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Close Grip Bench Press" }, { name: "Dips" },
             ],
             triceps_isolation: [
-                { name: "Tricep Pushdown", type: 'isolation', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Overhead Extension", type: 'isolation', baseScheme: { sets: 3, reps: 12 } },
-                { name: "Skullcrushers", type: 'isolation', baseScheme: { sets: 3, reps: 10 } },
+                { name: "Tricep Pushdown" }, { name: "Overhead Extension" }, { name: "Skullcrushers" },
+            ],
+            core: [ // NEW: Added core
+                { name: "Crunches" }, { name: "Leg Raises" }, { name: "Plank" }, { name: "Cable Crunches" }, { name: "Ab Wheel" }
             ]
         };
 
-        // --- NEW: Program Structure ---
-        // This defines the *template* for each day.
+        // --- NEW: Program Structure (Blank Slate) ---
         const PROGRAM = {
-            weeks: 8,
+            weeks: 52, // Now it's just a logbook, 52 weeks in a year
             days: [
-                {
-                    name: "Day 1: Chest & Triceps",
-                    structure: ['chest_compound', 'chest_compound', 'chest_isolation', 'triceps_compound', 'triceps_isolation']
-                },
-                {
-                    name: "Day 2: Back & Biceps",
-                    structure: ['back_compound_heavy', 'back_vertical_pull', 'back_horizontal_row', 'back_rear_delts', 'biceps_curl', 'biceps_hammer']
-                },
-                {
-                    name: "Day 3: Legs",
-                    structure: ['leg_squat', 'leg_hinge', 'leg_accessory', 'leg_accessory', 'leg_calves']
-                },
-                {
-                    name: "Day 4: Shoulders & Chest",
-                    structure: ['shoulder_press', 'shoulder_lateral', 'shoulder_front', 'back_rear_delts', 'chest_compound', 'chest_pushup']
-                },
-                {
-                    name: "Day 5: Arms & Full Body",
-                    structure: ['biceps_curl', 'triceps_isolation', 'biceps_hammer', 'triceps_isolation', 'leg_squat', 'back_horizontal_row']
-                }
+                { name: "Day 1: Lower (Glutes/Hams)" },
+                { name: "Day 2: Shoulders/Chest/Tris" },
+                { name: "Day 3: Lower (Glutes/Quads)" },
+                { name: "Day 4: Back/Biceps" },
+                { name: "Day 5: Core" }
             ]
         };
 
-        // --- NEW: Audio helper functions ---
-
-        /**
-         * Converts a Base64 string to an ArrayBuffer.
-         * @param {string} base64 - The Base64 string to convert.
-         * @returns {ArrayBuffer} - The resulting ArrayBuffer.
-         */
+        // --- Audio helper functions ---
         function base64ToArrayBuffer(base64) {
             const binaryString = window.atob(base64);
             const len = binaryString.length;
@@ -652,59 +589,48 @@
             return bytes.buffer;
         }
 
-        /**
-         * Converts raw PCM 16-bit audio data to a WAV Blob.
-         * @param {Int16Array} pcmData - The raw PCM data.
-         * @param {number} sampleRate - The sample rate of the audio (e.g., 24000).
-         * @returns {Blob} - A Blob object representing the WAV file.
-         */
         function pcmToWav(pcmData, sampleRate) {
             const numChannels = 1;
             const bitsPerSample = 16;
             const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
             const blockAlign = numChannels * (bitsPerSample / 8);
             const dataSize = pcmData.length * (bitsPerSample / 8);
-
             const buffer = new ArrayBuffer(44 + dataSize);
             const view = new DataView(buffer);
-
-            // RIFF header
             view.setUint32(0, 0x52494646, false); // "RIFF"
             view.setUint32(4, 36 + dataSize, true); // Chunk size
             view.setUint32(8, 0x57415645, false); // "WAVE"
-
-            // "fmt " sub-chunk
             view.setUint32(12, 0x666D7420, false); // "fmt "
-            view.setUint32(16, 16, true); // Sub-chunk 1 size (16 for PCM)
+            view.setUint32(16, 16, true); // Sub-chunk 1 size
             view.setUint16(20, 1, true); // Audio format (1 for PCM)
             view.setUint16(22, numChannels, true); // Number of channels
             view.setUint32(24, sampleRate, true); // Sample rate
             view.setUint32(28, byteRate, true); // Byte rate
             view.setUint16(32, blockAlign, true); // Block align
             view.setUint16(34, bitsPerSample, true); // Bits per sample
-
-            // "data" sub-chunk
             view.setUint32(36, 0x64617461, false); // "data"
             view.setUint32(40, dataSize, true); // Sub-chunk 2 size
-
-            // Write the PCM data
             for (let i = 0; i < pcmData.length; i++) {
                 view.setInt16(44 + i * 2, pcmData[i], true);
             }
-
             return new Blob([buffer], { type: 'audio/wav' });
         }
 
 
         const app = {
+            // NEW: Main data object
+            data: {
+                workoutTemplates: {} // e.g. { 'w1-d0': ['Bench Press', 'Squat'] }
+            },
             history: [],
-            difficultyLog: [], // NEW
+            difficultyLog: [],
             currentView: 'view-home',
             chartInstance: null,
-            difficultyChartInstance: null, // NEW
-            currentWorkout: { week: 1, dayIndex: 0 }, // NEW
-            currentReplace: { exId: null, oldName: null }, // NEW
-            // UPDATED: More Quotes
+            difficultyChartInstance: null,
+            currentWorkout: { week: 1, dayIndex: 0 },
+            currentReplace: { exId: null, oldName: null },
+            allExercisesList: [], // NEW: Flattened list for search
+            
             quotes: [
                 { text: "It never gets easier, you just get faster.", author: "Greg LeMond" },
                 { text: "The last rep is the one that makes the muscle grow.", author: "Arnold Schwarzenegger" },
@@ -714,105 +640,122 @@
                 { text: "Your body can stand almost anything. It's your mind you have to convince.", author: "Unknown" }
             ],
             currentQuoteIndex: 0,
-            audioContext: null, // NEW: For playing natural voice
+            audioContext: null,
             
             init() {
                 // Load data
-                this.loadHistory();
-                this.loadDifficultyLog(); // NEW
+                this.loadData(); // NEW: Loads templates
+                this.loadHistory(); // Loads logged sets
+                this.loadDifficultyLog();
                 
                 // Set up UI
                 this.injectIcons();
                 this.renderWeekSelector();
                 this.renderDays();
-                this.renderHistoryExerciseSelector();
-                this.profile.load(); // NEW
+                this.buildAllExercisesList(); // NEW: For search
+                this.renderHistoryExerciseSelector(); // Uses new list
+                this.profile.load();
                 
-                // NEW: Load initial quote
                 this.refreshQuote(true);
-                
-                // Show initial view
                 this.showView('view-home');
-                
-                // Init timer
                 this.timer.init();
 
-                // NEW: Initialize AudioContext for natural voice
                 try {
                     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 } catch(e) {
                     console.error("Web Audio API is not supported in this browser.");
                 }
+
+                // NEW: Close search suggestions if clicking outside
+                document.body.addEventListener('click', (e) => {
+                    if (!document.getElementById('add-exercise-ui').contains(e.target)) {
+                        document.getElementById('search-suggestions').classList.add('hidden');
+                    }
+                });
             },
             
             injectIcons() {
                 document.getElementById('nav-icon-home').innerHTML = ICONS.home;
                 document.getElementById('nav-icon-workout').innerHTML = ICONS.workout;
                 document.getElementById('nav-icon-history').innerHTML = ICONS.history;
-                document.getElementById('nav-icon-timer').innerHTML = ICONS.timer; // For the nav bar
-                document.getElementById('timer-icon').innerHTML = ICONS.timer; // For the modal
-                document.getElementById('nav-icon-profile').innerHTML = ICONS.profile; // NEW
-                // NEW:
+                document.getElementById('nav-icon-timer').innerHTML = ICONS.timer;
+                document.getElementById('timer-icon').innerHTML = ICONS.timer;
+                document.getElementById('nav-icon-profile').innerHTML = ICONS.profile;
                 if (document.getElementById('refresh-quote-icon')) {
                     document.getElementById('refresh-quote-icon').innerHTML = ICONS.refresh;
                 }
             },
             
             // --- DATA HANDLING ---
+            // NEW: Combined data load/save
+            loadData() {
+                const storedData = localStorage.getItem('megsFitnessApp_data');
+                this.data = storedData ? JSON.parse(storedData) : { workoutTemplates: {} };
+                if (!this.data.workoutTemplates) {
+                    this.data.workoutTemplates = {}; // Ensure it exists
+                }
+            },
+            saveData() {
+                localStorage.setItem('megsFitnessApp_data', JSON.stringify(this.data));
+            },
+
+            // NEW: Specific template functions
+            loadWorkoutTemplate(week, dayIndex) {
+                const key = `w${week}-d${dayIndex}`;
+                return this.data.workoutTemplates[key] || [];
+            },
+            saveWorkoutTemplate(week, dayIndex, exerciseList) {
+                const key = `w${week}-d${dayIndex}`;
+                this.data.workoutTemplates[key] = exerciseList;
+                this.saveData();
+            },
+
             loadHistory() {
                 const storedHistory = localStorage.getItem('megsFitnessApp_history');
                 this.history = storedHistory ? JSON.parse(storedHistory) : [];
             },
-            
             saveHistory() {
                 localStorage.setItem('megsFitnessApp_history', JSON.stringify(this.history));
             },
             
-            // NEW: Difficulty Log functions
             loadDifficultyLog() {
                 const storedLog = localStorage.getItem('megsFitnessApp_difficultyLog');
                 this.difficultyLog = storedLog ? JSON.parse(storedLog) : [];
             },
-            
             saveDifficultyLog() {
                 localStorage.setItem('megsFitnessApp_difficultyLog', JSON.stringify(this.difficultyLog));
             },
 
-            // NEW: Save daily difficulty
             saveDailyDifficulty() {
                 const slider = document.getElementById('difficulty-slider');
                 const rating = slider.value;
                 const { week, dayIndex } = this.currentWorkout;
-                const dayName = PROGRAM.days[dayIndex].name.split(':')[0]; // "Day 1"
+                const dayName = PROGRAM.days[dayIndex].name.split(':')[0];
 
                 const logEntry = {
-                    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+                    date: new Date().toISOString().split('T')[0],
                     week: parseInt(week),
                     day: dayName,
                     rating: parseInt(rating)
                 };
 
-                // Remove duplicate entry for the same day
                 const existingIndex = this.difficultyLog.findIndex(entry => entry.date === logEntry.date && entry.week === logEntry.week && entry.day === logEntry.day);
                 if (existingIndex > -1) {
                     this.difficultyLog.splice(existingIndex, 1);
                 }
-
                 this.difficultyLog.push(logEntry);
                 this.saveDifficultyLog();
 
-                // Show feedback
                 const btn = document.getElementById('save-difficulty-btn');
                 const originalText = btn.innerHTML;
                 btn.innerHTML = 'Saved!';
-                btn.classList.add('goal-met'); // Re-use green style
+                btn.classList.add('goal-met');
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.classList.remove('goal-met');
                 }, 2000);
             },
             
-            // UPDATED logSet function
             logSet(exerciseName, exId, week, day) {
                 const weightEl = document.getElementById(`weight-${exId}`);
                 const repsEl = document.getElementById(`reps-${exId}`);
@@ -821,10 +764,9 @@
                 const reps = repsEl.value;
 
                 if (!weight || !reps) {
-                    // UPDATED: Only close timer if it's open, don't toggle
                     const timerPanel = document.getElementById('timer-modal');
                     if (!timerPanel.classList.contains('translate-y-full')) {
-                        app.timer.toggleModal(); // Close it
+                        app.timer.toggleModal();
                     }
                     setTimeout(() => alert('Please enter both weight and reps.'), 10);
                     return;
@@ -832,13 +774,11 @@
                 
                 const weightNum = parseFloat(weight);
                 const repsNum = parseInt(reps);
-                
-                // Epley formula for 1RM
                 const estimated1RM = (repsNum === 1) ? weightNum : weightNum * (1 + (repsNum / 30));
                 
                 const logEntry = {
-                    id: Date.now(), // NEW: Unique ID for deleting
-                    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+                    id: Date.now(),
+                    date: new Date().toISOString().split('T')[0],
                     exercise: exerciseName,
                     week: parseInt(week),
                     day: parseInt(day),
@@ -850,26 +790,21 @@
                 this.history.push(logEntry);
                 this.saveHistory();
                 
-                // NEW: Show Logged Set
                 const logContainer = document.getElementById(`logged-sets-${exId}`);
                 if (logContainer) {
                     const setEl = document.createElement('div');
-                    // NEW: Add ID to the element
                     setEl.id = `set-${logEntry.id}`;
-                    // UPDATED: Style and add delete button
                     setEl.className = 'flex justify-between items-center text-sm p-2 bg-app rounded-lg border border-primary/50';
                     setEl.innerHTML = `
                         <span class="text-main"><strong>${logEntry.weight} kg</strong> x ${logEntry.reps} reps</span>
                         <button onclick="app.deleteSet(${logEntry.id})" class="delete-set-btn" aria-label="Delete set">&times;</button>
                     `;
-                    logContainer.prepend(setEl); // Prepend to show newest first
+                    logContainer.prepend(setEl);
                 }
 
-                // NEW: Reset Inputs
                 weightEl.value = '';
                 repsEl.value = '';
 
-                // --- NEW: Check and update best 1RM ---
                 const best1rmEl = document.getElementById(`best-1rm-${exId}`);
                 if (best1rmEl) {
                     let currentBest = parseFloat(best1rmEl.dataset.best1rm) || 0;
@@ -879,25 +814,13 @@
                     }
                 }
                 
-                // --- NEW: Check for goal completion ---
-                const card = document.getElementById(`card-${exId}`);
-                if (card) {
-                    let logged = parseInt(card.dataset.setsLogged) + 1;
-                    card.dataset.setsLogged = logged;
-                    const goal = parseInt(card.dataset.goalSets);
-                    
-                    if (logged >= goal) {
-                        card.classList.add('goal-met');
-                    }
-                }
+                // --- NEW: Goal completion removed ---
                 
-                // Re-render history if we are on that page
                 if (this.currentView === 'view-history') {
                     this.renderHistory();
                 }
             },
 
-            // NEW: Delete Set Function
             deleteSet(id) {
                 const entryId = parseInt(id);
                 const index = this.history.findIndex(entry => entry.id === entryId);
@@ -905,32 +828,18 @@
                 if (index === -1) return;
                 
                 const logEntry = this.history[index];
-                const exId = logEntry.exercise.replace(/\s+/g, '-');
+                const exId = logEntry.exercise.replace(/[^a-zA-Z0-9]/g, '-'); // Safer ID
                 
-                // 1. Remove from history array and save
                 this.history.splice(index, 1);
                 this.saveHistory();
                 
-                // 2. Remove from UI
                 const setElement = document.getElementById(`set-${entryId}`);
                 if (setElement) {
                     setElement.remove();
                 }
                 
-                // 3. Update goal tracking card
-                const card = document.getElementById(`card-${exId}`);
-                if (card) {
-                    let logged = parseInt(card.dataset.setsLogged) - 1;
-                    if (logged < 0) logged = 0;
-                    card.dataset.setsLogged = logged;
-                    const goal = parseInt(card.dataset.goalSets);
-                    
-                    if (logged < goal) {
-                        card.classList.remove('goal-met');
-                    }
-                }
+                // --- NEW: Goal tracking removed ---
                 
-                // 4. Recalculate and update best 1RM
                 const newBest = this.getBest1RM(logEntry.exercise);
                 const best1rmEl = document.getElementById(`best-1rm-${exId}`);
                 if (best1rmEl) {
@@ -938,69 +847,55 @@
                     best1rmEl.dataset.best1rm = newBest;
                 }
 
-                // 5. Re-render history view if active
                 if (this.currentView === 'view-history') {
                     this.renderHistory();
                 }
             },
             
-            // --- NEW: Countdown & Speech Function ---
+            // --- Countdown & Speech ---
             startCountdown() {
                 const modal = document.getElementById('countdown-modal');
                 const textEl = document.getElementById('countdown-text');
                 if (!modal || !textEl) return;
-
                 modal.classList.remove('hidden');
-                
                 let count = 3;
                 textEl.innerText = count;
-
                 const interval = setInterval(() => {
                     count--;
                     if (count > 0) {
                         textEl.innerText = count;
                     } else if (count === 0) {
                         textEl.innerText = 'GO!';
-                        this.playGoSound(); // Speak on "GO!"
+                        this.playGoSound();
                     } else {
-                        // Hide modal after "GO!"
                         clearInterval(interval);
                         modal.classList.add('hidden');
                     }
                 }, 1000);
             },
             
-            // --- UPDATED: This now calls the natural voice ---
             playGoSound() {
                 this.playNaturalVoice("Get after it, Meg!");
             },
 
-            // --- NEW: Natural Voice Function ---
             async playNaturalVoice(text) {
                 if (!this.audioContext) {
                     console.warn("AudioContext not initialized.");
                     return;
                 }
-
-                // Resume context if needed (browsers block audio until user interaction)
                 if (this.audioContext.state === 'suspended') {
                     this.audioContext.resume();
                 }
                 
-                const apiKey = ""; // Leave blank
+                const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
-
                 const payload = {
-                    contents: [{
-                        parts: [{ text: `Say with an energetic, friendly, and motivational tone: ${text}` }]
-                    }],
+                    contents: [{ parts: [{ text: `Say with an energetic, friendly, and motivational tone: ${text}` }] }],
                     generationConfig: {
                         responseModalities: ["AUDIO"],
                         speechConfig: {
                             speechFormat: "PCM16",
-                            voiceConfig: {
-                                prebuiltVoiceConfig: { voiceName: "Puck" } // "Puck" is Upbeat
-                            }
+                            voiceConfig: { prebuiltVoiceConfig: { voiceName: "Puck" } }
                         }
                     },
                     model: "gemini-2.5-flash-preview-tts"
@@ -1012,31 +907,23 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-
                     if (!response.ok) {
                         console.error("TTS API request failed:", response.status, await response.text());
                         return;
                     }
-
                     const result = await response.json();
                     const part = result?.candidates?.[0]?.content?.parts?.[0];
                     const audioData = part?.inlineData?.data;
-                    const mimeType = part?.inlineData?.mimeType; // e.g., "audio/L16;rate=24000"
+                    const mimeType = part?.inlineData?.mimeType;
 
                     if (audioData && mimeType && mimeType.startsWith("audio/L16")) {
-                        const sampleRateMatch = mimeType.match(/rate=(\d+)/);
-                        const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 24000;
-
+                        const sampleRate = parseInt(mimeType.match(/rate=(\d+)/)[1], 10);
                         const pcmBuffer = base64ToArrayBuffer(audioData);
                         const pcm16 = new Int16Array(pcmBuffer);
-                        
                         const wavBlob = pcmToWav(pcm16, sampleRate);
-                        
-                        // Play the WAV Blob
                         const audioUrl = URL.createObjectURL(wavBlob);
                         const audio = new Audio(audioUrl);
                         audio.play();
-
                     } else {
                         console.error("Unexpected TTS response structure:", result);
                     }
@@ -1045,41 +932,35 @@
                 }
             },
 
-
             // --- NAVIGATION ---
             showView(viewId) {
-                // Hide all views
                 document.getElementById('view-home').classList.add('hidden');
                 document.getElementById('view-workout').classList.add('hidden');
                 document.getElementById('view-history').classList.add('hidden');
-                document.getElementById('view-profile').classList.add('hidden'); // NEW
+                document.getElementById('view-profile').classList.add('hidden');
                 
-                // Show selected view
                 document.getElementById(viewId).classList.remove('hidden');
                 
-                // Update nav state
                 document.getElementById('nav-home').classList.remove('active');
                 document.getElementById('nav-workout').classList.remove('active');
                 document.getElementById('nav-history').classList.remove('active');
                 
                 if (viewId === 'view-home') document.getElementById('nav-home').classList.add('active');
                 if (viewId === 'view-workout') document.getElementById('nav-workout').classList.add('active');
-                if (viewId === 'view-profile') {} // No nav item for profile
                 if (viewId === 'view-history') {
                     document.getElementById('nav-history').classList.add('active');
-                    this.renderHistory(); // Re-render chart when viewing
+                    this.renderHistory();
                 }
                 
                 this.currentView = viewId;
             },
             
-            // --- NEW: Quote Function ---
+            // --- Quote Function ---
             refreshQuote(isInitialLoad = false) {
                 const quoteContent = document.getElementById('quote-content');
                 if (!quoteContent) return;
 
                 const updateText = () => {
-                    // Get next quote (ensure it's not the same as the current one)
                     let newIndex = this.currentQuoteIndex;
                     if (this.quotes.length > 1) {
                         while (newIndex === this.currentQuoteIndex) {
@@ -1088,40 +969,30 @@
                     }
                     this.currentQuoteIndex = newIndex;
                     const quote = this.quotes[this.currentQuoteIndex];
-                    
-                    // Update HTML
                     quoteContent.innerHTML = `
-                        <p class="text-light italic text-center">
-                            "${quote.text}"
-                        </p>
+                        <p class="text-light italic text-center">"${quote.text}"</p>
                         <p class="text-light text-sm text-right mt-2">- ${quote.author}</p>
                     `;
-                    
-                    // Fade in
                     quoteContent.classList.remove('quote-fade-out');
                 };
 
                 if (isInitialLoad) {
-                    // On first load, just set the text from index 0
                     const quote = this.quotes[0];
                     this.currentQuoteIndex = 0;
                     quoteContent.innerHTML = `
-                        <p class="text-light italic text-center">
-                            "${quote.text}"
-                        </p>
+                        <p class="text-light italic text-center">"${quote.text}"</p>
                         <p class="text-light text-sm text-right mt-2">- ${quote.author}</p>
                     `;
                 } else {
-                    // Fade out, then update, then fade in
                     quoteContent.classList.add('quote-fade-out');
-                    setTimeout(updateText, 300); // Wait for CSS transition
+                    setTimeout(updateText, 300);
                 }
             },
 
             // --- WORKOUT VIEW ---
             renderWeekSelector() {
                 const select = document.getElementById('week-select');
-                select.innerHTML = ''; // Clear
+                select.innerHTML = '';
                 for (let i = 1; i <= PROGRAM.weeks; i++) {
                     select.innerHTML += `<option value="${i}">Week ${i}</option>`;
                 }
@@ -1130,129 +1001,56 @@
             renderDays() {
                 const daySelector = document.getElementById('day-selector');
                 const exerciseList = document.getElementById('exercise-list');
-                const finishers = document.getElementById('workout-finishers'); // NEW
-                daySelector.innerHTML = ''; // Clear days
-                exerciseList.innerHTML = ''; // Clear exercises
-                finishers.classList.add('hidden'); // NEW: Hide finishers
+                const finishers = document.getElementById('workout-finishers');
+                const addExUI = document.getElementById('add-exercise-ui'); // NEW
+                daySelector.innerHTML = '';
+                exerciseList.innerHTML = '';
+                finishers.classList.add('hidden');
+                addExUI.classList.add('hidden'); // NEW
                 
                 PROGRAM.days.forEach((day, index) => {
                     daySelector.innerHTML += `
                         <button 
                             onclick="app.renderExercises(${index})" 
                             class="btn bg-gray-100 hover:bg-gray-200 text-sm p-3">
-                            ${day.name.split(':')[0]} <!-- Just "Day 1" -->
+                            ${day.name.split(':')[0]}
                         </button>
                     `;
                 });
             },
             
-            // --- NEW: Intensity Logic ---
-            // Calculates sets/reps based on week and exercise type
-            getIntensity(week, baseScheme, type) {
-                const { sets: baseSets, reps: baseReps } = baseScheme;
-                if (baseReps === 'AMRAP') return { sets: baseSets, reps: 'AMRAP' };
-                
-                let sets = baseSets;
-                let reps = baseReps;
-                
-                // Simple linear progression model
-                // Weeks 1-2: Base
-                // Weeks 3-4: +Reps or +Sets
-                // Weeks 5-6: +Weight (so -Reps) or +Sets
-                // Weeks 7-8: Peak
-                
-                if (type === 'strength') { // e.g., 5x5
-                    if (week >= 3 && week <= 4) { sets = 5; reps = 4; } // Heavier
-                    if (week >= 5 && week <= 6) { sets = 5; reps = 3; } // Heavier still
-                    if (week >= 7) { sets = 4; reps = 2; } // Peaking
-                } else if (type === 'hypertrophy') { // e.g., 3x10
-                    if (week >= 3 && week <= 4) { sets = baseSets; reps = baseReps + 2; } // More reps
-                    if (week >= 5 && week <= 6) { sets = baseSets + 1; reps = baseReps; } // More sets
-                    if (week >= 7) { sets = baseSets + 1; reps = baseReps + 2; } // More both
-                } else { // isolation/endurance
-                    if (week >= 3 && week <= 4) { sets = baseSets; reps = baseReps + 3; }
-                    if (week >= 5 && week <= 6) { sets = baseSets + 1; reps = baseReps; }
-                    if (week >= 7) { sets = baseSets + 1; reps = baseReps + 3; }
-                }
-                
-                // Cap sets at 5 for sanity
-                if (sets > 5) sets = 5;
-                
-                return { sets, reps };
-            },
-            
-            // --- NEW: Workout Generation ---
-            // Dynamically builds the workout for the day
-            generateWorkout(week, dayIndex) {
-                const dayStructure = PROGRAM.days[dayIndex].structure;
-                const workout = [];
-                
-                dayStructure.forEach((category, catIndex) => {
-                    const exerciseOptions = EXERCISE_BANK[category];
-                    if (!exerciseOptions) return;
-                    
-                    // "Chops and changes":
-                    // Cycle through exercises based on week and category index
-                    // This creates a consistent but varied weekly plan
-                    const exerciseIndex = (week - 1 + catIndex) % exerciseOptions.length;
-                    const selectedExercise = exerciseOptions[exerciseIndex];
-                    
-                    // Get intensity for the week
-                    const { sets, reps } = this.getIntensity(week, selectedExercise.baseScheme, selectedExercise.type);
-                    
-                    workout.push({
-                        name: selectedExercise.name,
-                        sets: sets,
-                        reps: reps
-                    });
-                });
-                
-                return workout;
-            },
-            
-            // NEW: Helper to get best 1RM from history
             getBest1RM(exerciseName) {
-                const exerciseData = this.history
-                    .filter(entry => entry.exercise === exerciseName);
-                
-                if (exerciseData.length === 0) {
-                    return 0;
-                }
-                
-                const best = exerciseData.reduce((max, entry) => 
-                    entry.estimated1RM > max ? entry.estimated1RM : max, 0);
-                
-                return best;
+                const exerciseData = this.history.filter(entry => entry.exercise === exerciseName);
+                if (exerciseData.length === 0) return 0;
+                return exerciseData.reduce((max, entry) => entry.estimated1RM > max ? entry.estimated1RM : max, 0);
             },
 
-            // NEW: Helper to render a single exercise card
-            renderSingleExercise(ex, week, dayIndex, isManuallyAdded = false) {
-                const exId = ex.name.replace(/\s+/g, '-') + (isManuallyAdded ? '-manual' : '');
-                const best1RM = this.getBest1RM(ex.name); // Get best 1RM
+            // --- NEW: Helper to render a single exercise card (BLANK SLATE) ---
+            renderSingleExercise(exerciseName, week, dayIndex) {
+                // Safer ID generation
+                const exId = exerciseName.replace(/[^a-zA-Z0-9]/g, '-') + `-${week}-${dayIndex}`;
+                const best1RM = this.getBest1RM(exerciseName);
                 
                 return `
-                    <div id="card-${exId}" data-goal-sets="${ex.sets}" data-sets-logged="0" class="bg-card p-4 rounded-xl shadow-lg shadow-primary/20 border border-primary/40 space-y-3 mb-4 transition-all">
-                        <!-- UPDATED Header with replace/delete -->
+                    <div id="card-${exId}" class="bg-card p-4 rounded-xl shadow-lg shadow-primary/20 border border-primary/40 space-y-3 mb-4 transition-all">
                         <div class="flex justify-between items-start">
-                            <!-- Left Side: Title -->
                             <div class="flex-grow">
-                                <h4 class="text-md font-semibold">${ex.name}</h4>
+                                <h4 class="text-md font-semibold">${exerciseName}</h4>
                                 <span id="best-1rm-${exId}" data-best-1rm="${best1RM}" class="text-sm font-bold text-primary-dark">
                                     ${best1RM > 0 ? `Best: ${best1RM} kg` : ''}
                                 </span>
                             </div>
-                            <!-- Right Side: New Buttons -->
                             <div class="flex space-x-1 flex-shrink-0 ml-2">
-                                <button onclick="app.showReplaceModal('${exId}', '${ex.name}')" class="card-action-btn" title="Replace Exercise">
+                                <button onclick="app.showReplaceModal('${exId}', '${exerciseName}')" class="card-action-btn" title="Replace Exercise">
                                     ${ICONS.swap}
                                 </button>
-                                <button onclick="app.deleteExerciseCard('${exId}')" class="card-action-btn" title="Delete Exercise">
+                                <button onclick="app.deleteExerciseCard('${exId}', '${exerciseName}')" class="card-action-btn" title="Delete Exercise">
                                     ${ICONS.trash}
                                 </button>
                             </div>
                         </div>
                         
-                        <p class="text-sm text-light">Goal: ${ex.sets} sets x ${ex.reps} reps</p>
+                        <!-- REMOVED GOAL TEXT -->
                         
                         <div class="flex items-center space-x-2">
                             <input id="weight-${exId}" type="number" placeholder="Weight (kg)" class="form-input w-1/2">
@@ -1262,16 +1060,15 @@
                         
                         <button 
                             onclick="app.logSet(
-                                '${ex.name}', 
+                                '${exerciseName}', 
                                 '${exId}',
                                 ${week},
                                 ${dayIndex + 1}
                             )" 
-                            class="w-full text-sm px-4 py-2 rounded-lg shadow-sm transition-all font-semibold text-main bg-primary hover:bg-primary-dark">
+                            class="w-full text-sm btn btn-primary">
                             Log Set
                         </button>
                         
-                        <!-- NEW: Logged sets container -->
                         <div id="logged-sets-${exId}" class="space-y-1 mt-3">
                             <!-- Logged sets will be prepended here -->
                         </div>
@@ -1279,97 +1076,151 @@
                 `;
             },
 
-            // UPDATED renderExercises
+            // --- UPDATED renderExercises (BLANK SLATE) ---
             renderExercises(dayIndex) {
                 const exerciseList = document.getElementById('exercise-list');
-                const finishers = document.getElementById('workout-finishers'); // NEW
+                const finishers = document.getElementById('workout-finishers');
+                const addExUI = document.getElementById('add-exercise-ui'); // NEW
                 const week = document.getElementById('week-select').value;
                 const day = PROGRAM.days[dayIndex];
                 
-                // --- NEW: Store current workout context ---
                 this.currentWorkout = { week: parseInt(week), dayIndex };
                 
-                // --- NEW: Generate workout on the fly ---
-                const generatedExercises = this.generateWorkout(week, dayIndex);
+                // Load the saved template of exercises
+                const savedExercises = this.loadWorkoutTemplate(week, dayIndex);
                 
                 exerciseList.innerHTML = `<h3 class="text-lg font-semibold mb-3">${day.name}</h3>`;
                 
-                generatedExercises.forEach(ex => {
-                    // NEW: Use the helper function
-                    exerciseList.innerHTML += this.renderSingleExercise(ex, week, dayIndex);
-                });
+                if (savedExercises.length === 0) {
+                    exerciseList.innerHTML += `<p class="text-light text-center">No exercises added for this day yet. Use the "Add Exercise" box above.</p>`;
+                } else {
+                    savedExercises.forEach(exName => {
+                        exerciseList.innerHTML += this.renderSingleExercise(exName, week, dayIndex);
+                    });
+                }
 
-                // --- NEW: Show and populate finishers ---
-                this.populateAddExerciseSelect('add-exercise-select'); // Use the 'add' select
+                // Show the "Add Exercise" UI and finishers
+                addExUI.classList.remove('hidden');
                 finishers.classList.remove('hidden');
             },
             
-            // NEW: Populate the add exercise dropdown
-            // UPDATED: Now reusable for different select elements
-            populateAddExerciseSelect(selectId, excludeName = null) {
-                const select = document.getElementById(selectId);
+            // --- NEW: Search & Add Logic ---
+            buildAllExercisesList() {
                 let allExercises = new Set();
                 Object.values(EXERCISE_BANK).forEach(category => {
                     category.forEach(exercise => {
                         allExercises.add(exercise.name);
                     });
                 });
-                
-                const sortedExercises = [...allExercises].sort();
-                select.innerHTML = '<option value="">-- Pick an exercise --</option>';
-                sortedExercises.forEach(exName => {
-                    if (exName !== excludeName) {
-                        select.innerHTML += `<option value="${exName}">${exName}</option>`;
-                    }
-                });
+                this.allExercisesList = [...allExercises].sort();
             },
 
-            // NEW: Add the selected exercise to the list
-            addSelectedExercise() {
-                const select = document.getElementById('add-exercise-select');
-                const exerciseName = select.value;
-                if (!exerciseName) return;
-
-                // Find this exercise in the bank to get its base scheme
-                let selectedExercise = null;
-                for (const category of Object.values(EXERCISE_BANK)) {
-                    selectedExercise = category.find(ex => ex.name === exerciseName);
-                    if (selectedExercise) break;
+            renderSearchSuggestions(event) {
+                const input = event.target.value.toLowerCase();
+                const suggestionsBox = document.getElementById('search-suggestions');
+                
+                if (event.key === 'Enter') {
+                    this.addCustomExercise();
+                    return;
                 }
 
-                if (!selectedExercise) return; // Should never happen
+                if (!input) {
+                    suggestionsBox.classList.add('hidden');
+                    return;
+                }
 
-                const { week, dayIndex } = this.currentWorkout;
-                // Get intensity for the week
-                const { sets, reps } = this.getIntensity(week, selectedExercise.baseScheme, selectedExercise.type);
+                const suggestions = this.allExercisesList.filter(ex => 
+                    ex.toLowerCase().includes(input)
+                );
                 
-                const ex = { name: selectedExercise.name, sets, reps };
-                
-                // Use the helper to add it to the DOM
-                const exerciseHTML = this.renderSingleExercise(ex, week, dayIndex, true);
-                document.getElementById('exercise-list').insertAdjacentHTML('beforeend', exerciseHTML);
+                if (suggestions.length === 0) {
+                    suggestionsBox.classList.add('hidden');
+                    return;
+                }
 
-                // Reset dropdown
-                select.value = '';
+                suggestionsBox.innerHTML = '';
+                suggestions.slice(0, 5).forEach(exName => { // Show max 5
+                    suggestionsBox.innerHTML += `
+                        <div class="suggestion-item" onclick="app.selectSuggestion('${exName}')">
+                            ${exName}
+                        </div>
+                    `;
+                });
+                suggestionsBox.classList.remove('hidden');
             },
 
-            // NEW: Delete an exercise card
-            deleteExerciseCard(exId) {
+            selectSuggestion(exName) {
+                document.getElementById('add-exercise-input').value = exName;
+                document.getElementById('search-suggestions').classList.add('hidden');
+                this.addCustomExercise(); // Automatically add it
+            },
+
+            addCustomExercise() {
+                const inputEl = document.getElementById('add-exercise-input');
+                const exerciseName = inputEl.value.trim();
+                
+                if (!exerciseName) return;
+
+                const { week, dayIndex } = this.currentWorkout;
+                
+                // Add to the saved template
+                let template = this.loadWorkoutTemplate(week, dayIndex);
+                if (template.includes(exerciseName)) {
+                    alert(`${exerciseName} is already in your list.`);
+                    return;
+                }
+                template.push(exerciseName);
+                this.saveWorkoutTemplate(week, dayIndex, template);
+                
+                // Add to the UI
+                // If this is the first exercise, clear the "No exercises" message
+                if (template.length === 1) {
+                    document.getElementById('exercise-list').innerHTML = `<h3 class="text-lg font-semibold mb-3">${PROGRAM.days[dayIndex].name}</h3>`;
+                }
+                
+                const exerciseHTML = this.renderSingleExercise(exerciseName, week, dayIndex);
+                document.getElementById('exercise-list').insertAdjacentHTML('beforeend', exerciseHTML);
+
+                // Reset input
+                inputEl.value = '';
+                document.getElementById('search-suggestions').classList.add('hidden');
+            },
+
+            // --- UPDATED: Delete exercise card (BLANK SLATE) ---
+            deleteExerciseCard(exId, exerciseName) {
                 const card = document.getElementById(`card-${exId}`);
                 if (card) {
                     card.remove();
                 }
+                
+                // Remove from saved template
+                const { week, dayIndex } = this.currentWorkout;
+                let template = this.loadWorkoutTemplate(week, dayIndex);
+                const newTemplate = template.filter(ex => ex !== exerciseName);
+                this.saveWorkoutTemplate(week, dayIndex, newTemplate);
+
+                if (newTemplate.length === 0) {
+                    document.getElementById('exercise-list').innerHTML = `
+                        <h3 class="text-lg font-semibold mb-3">${PROGRAM.days[dayIndex].name}</h3>
+                        <p class="text-light text-center">No exercises added for this day yet. Use the "Add Exercise" box above.</p>
+                    `;
+                }
             },
 
-            // NEW: Functions for the Replace Modal
+            // --- UPDATED: Replace Modal (BLANK SLATE) ---
             showReplaceModal(exId, oldName) {
                 this.currentReplace = { exId, oldName };
-                
-                // Populate modal text and dropdown
                 document.getElementById('replace-old-name').innerText = oldName;
-                this.populateAddExerciseSelect('replace-exercise-select', oldName);
                 
-                // Show modal
+                // Populate dropdown with all exercises from the bank
+                const select = document.getElementById('replace-exercise-select');
+                select.innerHTML = '<option value="">-- Pick an exercise --</option>';
+                this.allExercisesList.forEach(exName => {
+                    if (exName !== oldName) {
+                        select.innerHTML += `<option value="${exName}">${exName}</option>`;
+                    }
+                });
+
                 document.getElementById('replace-modal').classList.remove('translate-y-full');
             },
 
@@ -1381,50 +1232,45 @@
                 const newExerciseName = document.getElementById('replace-exercise-select').value;
                 if (!newExerciseName) return;
 
-                const { exId } = this.currentReplace;
+                const { exId, oldName } = this.currentReplace;
                 const oldCard = document.getElementById(`card-${exId}`);
                 if (!oldCard) return;
 
-                // Find this exercise in the bank to get its base scheme
-                let selectedExercise = null;
-                for (const category of Object.values(EXERCISE_BANK)) {
-                    selectedExercise = category.find(ex => ex.name === newExerciseName);
-                    if (selectedExercise) break;
-                }
-                if (!selectedExercise) return;
-
                 const { week, dayIndex } = this.currentWorkout;
-                const { sets, reps } = this.getIntensity(week, selectedExercise.baseScheme, selectedExercise.type);
-                
-                const newEx = { name: selectedExercise.name, sets, reps };
-                
+
                 // Generate new card HTML
-                const newCardHTML = this.renderSingleExercise(newEx, week, dayIndex, true);
+                const newCardHTML = this.renderSingleExercise(newExerciseName, week, dayIndex);
                 
                 // Replace old card with new one
                 oldCard.outerHTML = newCardHTML;
+
+                // Update the saved template
+                let template = this.loadWorkoutTemplate(week, dayIndex);
+                const index = template.indexOf(oldName);
+                if (index > -1) {
+                    template[index] = newExerciseName;
+                    this.saveWorkoutTemplate(week, dayIndex, template);
+                }
                 
-                // Hide modal
                 this.hideReplaceModal();
             },
 
             // --- HISTORY VIEW ---
             renderHistoryExerciseSelector() {
                 const select = document.getElementById('exercise-history-select');
-                let allExercises = new Set(); // Use a Set to avoid duplicates
                 
-                // --- NEW: Read from EXERCISE_BANK ---
-                Object.values(EXERCISE_BANK).forEach(category => {
-                    category.forEach(exercise => {
-                        allExercises.add(exercise.name);
-                    });
-                });
-                
-                const sortedExercises = [...allExercises].sort();
-                
+                // --- NEW: Use the pre-built list ---
                 select.innerHTML = '<option value="">-- Select Exercise --</option>';
-                sortedExercises.forEach(exName => {
+                this.allExercisesList.forEach(exName => {
                     select.innerHTML += `<option value="${exName}">${exName}</option>`;
+                });
+
+                // --- NEW: Also add exercises from history not in the bank ---
+                const historyExercises = new Set(this.history.map(h => h.exercise));
+                historyExercises.forEach(exName => {
+                    if (!this.allExercisesList.includes(exName)) {
+                        select.innerHTML += `<option value="${exName}">${exName} (Custom)</option>`;
+                    }
                 });
             },
             
@@ -1433,42 +1279,37 @@
                 const logList = document.getElementById('history-log-list');
                 
                 if (this.chartInstance) {
-                    this.chartInstance.destroy(); // Clear old chart
+                    this.chartInstance.destroy();
                 }
-                if (this.difficultyChartInstance) { // NEW
+                if (this.difficultyChartInstance) {
                     this.difficultyChartInstance.destroy();
                 }
 
-                // --- NEW: Render Difficulty Chart (Moved) ---
-                // This is now rendered *before* the exercise check, so it always appears.
                 this.renderDifficultyChart();
                 
                 if (!selectedExercise) {
                     logList.innerHTML = '<p class="text-light text-center">Select an exercise to see your history.</p>';
-                    // Clear the exercise chart canvas if nothing is selected
                     const ctx = document.getElementById('progress-chart').getContext('2d');
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    return; // Return after clearing
+                    return;
                 }
                 
-                // Filter history for this exercise
                 const exerciseData = this.history
                     .filter(entry => entry.exercise === selectedExercise)
-                    .sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by date
+                    .sort((a, b) => new Date(a.date) - new Date(b.date));
                     
                 if (exerciseData.length === 0) {
                     logList.innerHTML = '<p class="text-light text-center">No logs found for this exercise yet.</p>';
                     return;
                 }
                 
-                // Render Log List
                 logList.innerHTML = '';
-                [...exerciseData].reverse().forEach(entry => { // Show newest first in list
+                [...exerciseData].reverse().forEach(entry => {
                     logList.innerHTML += `
                         <div class="flex justify-between items-center text-sm p-2 border-b border-gray-100">
                             <div>
                                 <span class="font-semibold">${entry.date}</span>
-                                <span class="text-light">(W${entry.week} D${entry.day})</span>
+                                <span class="text-light">(W${entry.week})</span>
                             </div>
                             <div>
                                 <strong>${entry.weight} kg</strong> x ${entry.reps} reps
@@ -1478,10 +1319,7 @@
                     `;
                 });
                 
-                // Render Chart
                 const ctx = document.getElementById('progress-chart').getContext('2d');
-                
-                // We'll chart the best estimated 1RM *per day*
                 const chartData = {};
                 exerciseData.forEach(entry => {
                     if (!chartData[entry.date] || entry.estimated1RM > chartData[entry.date]) {
@@ -1500,23 +1338,17 @@
                             label: `Est. 1RM Progress (${selectedExercise})`,
                             data: data,
                             borderColor: 'var(--color-primary-dark)',
-                            backgroundColor: 'rgba(230, 197, 197, 0.1)', // UPDATED
+                            backgroundColor: 'rgba(230, 197, 197, 0.1)',
                             fill: true,
                             tension: 0.1
                         }]
                     }
                 });
-                
-                // --- NEW: Render Difficulty Chart ---
-                // MOVED from here
             },
             
-            // NEW: Render Difficulty Chart
             renderDifficultyChart() {
                 const ctx = document.getElementById('difficulty-chart').getContext('2d');
-                
                 const sortedData = [...this.difficultyLog].sort((a, b) => new Date(a.date) - new Date(b.date));
-
                 const labels = sortedData.map(entry => `${entry.date.slice(5)} (W${entry.week})`);
                 const data = sortedData.map(entry => entry.rating);
 
@@ -1527,7 +1359,7 @@
                         datasets: [{
                             label: 'Daily Difficulty Rating (1=Easy, 5=Hard)',
                             data: data,
-                            backgroundColor: 'rgba(230, 197, 197, 0.5)', // UPDATED
+                            backgroundColor: 'rgba(230, 197, 197, 0.5)',
                             borderColor: 'var(--color-primary-dark)',
                             borderWidth: 1
                         }]
@@ -1571,65 +1403,49 @@
                 init() {
                     this.updateDisplay();
                 },
-                
-                toggleModal() { // UPDATED: Slides panel up and down
+                toggleModal() {
                     const modal = document.getElementById('timer-modal');
-                    modal.classList.toggle('translate-y-full'); // This is the 'hidden' state
+                    modal.classList.toggle('translate-y-full');
                 },
-                
                 set(seconds) {
                     if (this.isRunning) return;
                     this.totalSeconds = seconds;
                     this.secondsRemaining = seconds;
                     this.updateDisplay();
                 },
-                
                 startStop() {
                     if (this.isRunning) {
-                        // Stop
                         clearInterval(this.interval);
                         this.isRunning = false;
                         document.getElementById('timer-start-stop').innerText = 'Start';
                     } else {
-                        // Start
-                        
-                        // --- NEW: Resume audio/speech context on user interaction ---
                         if (app.audioContext && app.audioContext.state === 'suspended') {
                             app.audioContext.resume();
                         }
-                        
                         this.isRunning = true;
                         document.getElementById('timer-start-stop').innerText = 'Stop';
-                        
                         this.interval = setInterval(() => {
                             this.secondsRemaining--;
                             this.updateDisplay();
-                            
                             if (this.secondsRemaining <= 0) {
                                 this.finish();
                             }
                         }, 1000);
                     }
                 },
-                
                 finish() {
                     clearInterval(this.interval);
                     this.isRunning = false;
                     document.getElementById('timer-start-stop').innerText = 'Start';
-                    this.secondsRemaining = this.totalSeconds; // Reset
+                    this.secondsRemaining = this.totalSeconds;
                     this.updateDisplay();
                     
-                    // auto-close timer modal
-                    // UPDATED: Check for new class
                     const timerPanel = document.getElementById('timer-modal');
                     if (!timerPanel.classList.contains('translate-y-full')) {
                         this.toggleModal();
                     }
-                    
-                    // Start the 3-2-1 countdown
                     app.startCountdown();
                 },
-                
                 updateDisplay() {
                     const minutes = Math.floor(this.secondsRemaining / 60);
                     const seconds = this.secondsRemaining % 60;
@@ -1638,68 +1454,52 @@
                 }
             },
 
-            // --- NEW: Profile Object ---
+            // --- Profile Object ---
             profile: {
                 data: {
                     height: '',
                     weight: '',
                     measurements: '',
-                    pic: 'https://placehold.co/128x128/F1D4D4/332E3C?text=Meg' // Default
+                    pic: 'https://placehold.co/128x128/F1D4D4/332E3C?text=Meg'
                 },
-
-                init() {
-                    this.load();
-                },
-
+                init() { this.load(); },
                 load() {
                     const storedProfile = localStorage.getItem('megsFitnessApp_profile');
                     if (storedProfile) {
                         this.data = JSON.parse(storedProfile);
                     }
-                    
                     const storedPic = localStorage.getItem('megsFitnessApp_profilePic');
                     if (storedPic) {
                         this.data.pic = storedPic;
                     }
-
                     document.getElementById('profile-height').value = this.data.height || '';
                     document.getElementById('profile-weight').value = this.data.weight || '';
                     document.getElementById('profile-measurements').value = this.data.measurements || '';
                     document.getElementById('profile-pic').src = this.data.pic;
                 },
-
                 save() {
                     this.data.height = document.getElementById('profile-height').value;
                     this.data.weight = document.getElementById('profile-weight').value;
                     this.data.measurements = document.getElementById('profile-measurements').value;
-                    
-                    // Don't save the pic data here, it's saved separately
                     const { pic, ...profileToSave } = this.data;
                     localStorage.setItem('megsFitnessApp_profile', JSON.stringify(profileToSave));
-                    
-                    // Show feedback
-                    alert('Profile Saved!'); // Simple alert for now
+                    alert('Profile Saved!');
                 },
-
                 handleImageUpload(event) {
                     const file = event.target.files[0];
                     if (!file) return;
-
-                    // Check file size (e.g., < 2MB)
-                    if (file.size > 2 * 1024 * 1024) { // 2MB
+                    if (file.size > 2 * 1024 * 1024) {
                         alert('Image is too large (max 2MB). Please choose a smaller file.');
-                        event.target.value = null; // Reset file input
+                        event.target.value = null;
                         return;
                     }
-
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         const base64String = reader.result;
-                        
                         try {
                             localStorage.setItem('megsFitnessApp_profilePic', base64String);
                             document.getElementById('profile-pic').src = base64String;
-                            this.data.pic = base64String; // Update in-memory data
+                            this.data.pic = base64String;
                         } catch (e) {
                             console.error('Failed to save image to localStorage:', e);
                             alert('Failed to save image. It might be too large for your browser\'s storage.');
